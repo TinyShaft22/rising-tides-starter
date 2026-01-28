@@ -1,0 +1,8 @@
+{
+  "name": "webapp-testing",
+  "description": "Test web applications using Playwright MCP. Browser automation, screenshots, and UI debugging.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Anthropic"
+  }
+}

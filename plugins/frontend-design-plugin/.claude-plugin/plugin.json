@@ -1,0 +1,8 @@
+{
+  "name": "frontend-design",
+  "description": "Create distinctive, production-grade frontend interfaces with high design quality. Uses context7 for live framework documentation.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Anthropic"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "remotion",
+  "description": "Create videos programmatically using React components. Direct access to Remotion MCP.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Anthropic"
+  }
+}

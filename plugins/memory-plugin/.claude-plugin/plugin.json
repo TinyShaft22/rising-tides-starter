@@ -1,0 +1,8 @@
+{
+  "name": "memory-graph",
+  "description": "Persistent knowledge graph for storing entities, relations, and observations across sessions.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Nick Mohler"
+  }
+}

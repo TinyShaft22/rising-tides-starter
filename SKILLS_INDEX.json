@@ -1,0 +1,1053 @@
+{
+  "meta": {
+    "name": "Rising Tides Skills Pack",
+    "version": "1.0.0",
+    "lastUpdated": "2026-01-27",
+    "totalSkills": 78,
+    "totalPlugins": 12,
+    "totalCLIs": 9,
+    "totalMCPs": 8
+  },
+  "clis": {
+    "gh": {
+      "name": "GitHub CLI",
+      "install": "brew install gh",
+      "installWin": "winget install --id GitHub.cli",
+      "auth": "gh auth login",
+      "verify": "gh auth status",
+      "docs": "https://cli.github.com"
+    },
+    "stripe": {
+      "name": "Stripe CLI",
+      "install": "brew install stripe/stripe-cli/stripe",
+      "installWin": "scoop install stripe",
+      "auth": "stripe login",
+      "verify": "stripe config --list",
+      "docs": "https://stripe.com/docs/cli"
+    },
+    "vercel": {
+      "name": "Vercel CLI",
+      "install": "npm install -g vercel",
+      "auth": "vercel login",
+      "verify": "vercel whoami",
+      "docs": "https://vercel.com/docs/cli"
+    },
+    "netlify": {
+      "name": "Netlify CLI",
+      "install": "npm install -g netlify-cli",
+      "auth": "netlify login",
+      "verify": "netlify status",
+      "docs": "https://docs.netlify.com/cli"
+    },
+    "firebase": {
+      "name": "Firebase CLI",
+      "install": "npm install -g firebase-tools",
+      "auth": "firebase login",
+      "verify": "firebase projects:list",
+      "docs": "https://firebase.google.com/docs/cli"
+    },
+    "supabase": {
+      "name": "Supabase CLI",
+      "install": "brew install supabase/tap/supabase",
+      "installWin": "scoop install supabase",
+      "installNpm": "npm install -g supabase",
+      "auth": "supabase login",
+      "verify": "supabase projects list",
+      "docs": "https://supabase.com/docs/guides/cli"
+    },
+    "gcloud": {
+      "name": "Google Cloud CLI",
+      "install": "brew install google-cloud-sdk",
+      "auth": "gcloud auth login",
+      "verify": "gcloud auth list",
+      "docs": "https://cloud.google.com/sdk/docs"
+    },
+    "jira": {
+      "name": "Jira CLI",
+      "install": "brew install ankitpokhrel/jira-cli/jira-cli",
+      "auth": "jira init",
+      "verify": "jira me",
+      "docs": "https://github.com/ankitpokhrel/jira-cli"
+    },
+    "datadog": {
+      "name": "Datadog CLI",
+      "install": "npx @leoflores/datadog-cli",
+      "env": ["DD_API_KEY", "DD_APP_KEY"],
+      "docs": "https://app.datadoghq.com/organization-settings/api-keys"
+    }
+  },
+  "mcps": {
+    "context7": {
+      "name": "Context7",
+      "purpose": "Live documentation for any library/framework",
+      "install": "npx -y @upstash/context7-mcp",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "@upstash/context7-mcp"]
+      }
+    },
+    "playwright": {
+      "name": "Playwright MCP",
+      "purpose": "Browser automation and E2E testing",
+      "install": "npx -y @playwright/mcp",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "@playwright/mcp"]
+      }
+    },
+    "remotion": {
+      "name": "Remotion MCP",
+      "purpose": "Programmatic video generation",
+      "install": "npx -y @anthropic-ai/mcp-server-remotion",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "@anthropic-ai/mcp-server-remotion"]
+      }
+    },
+    "github": {
+      "name": "GitHub MCP",
+      "purpose": "GitHub API operations",
+      "install": "npx -y @anthropic-ai/mcp-server-github",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "@anthropic-ai/mcp-server-github"]
+      }
+    },
+    "memory": {
+      "name": "Memory MCP",
+      "purpose": "Persistent knowledge graph across sessions",
+      "install": "npx -y @modelcontextprotocol/server-memory",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-memory"]
+      }
+    },
+    "claude-in-chrome": {
+      "name": "Claude in Chrome",
+      "purpose": "Full browser control via Chrome extension",
+      "install": "Chrome extension",
+      "note": "Requires Claude in Chrome extension installed"
+    },
+    "shadcn": {
+      "name": "shadcn/ui MCP",
+      "purpose": "Component registry and installation",
+      "install": "npx -y @jpisnice/shadcn-ui-mcp-server",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "@jpisnice/shadcn-ui-mcp-server"]
+      }
+    },
+    "perplexity": {
+      "name": "Perplexity MCP",
+      "purpose": "Web search and research",
+      "install": "npx -y @jschuller/perplexity-mcp",
+      "config": {
+        "command": "npx",
+        "args": ["-y", "@jschuller/perplexity-mcp"]
+      }
+    }
+  },
+  "plugins": [
+    {
+      "id": "react-dev-plugin",
+      "skill": "react-dev",
+      "mcps": ["context7"],
+      "purpose": "React development with live docs"
+    },
+    {
+      "id": "frontend-design-plugin",
+      "skill": "frontend-design",
+      "mcps": ["context7"],
+      "purpose": "Frontend architecture with live docs"
+    },
+    {
+      "id": "frontend-ui-plugin",
+      "skill": "frontend-design",
+      "mcps": ["context7", "shadcn"],
+      "purpose": "Full frontend with components"
+    },
+    {
+      "id": "mcp-builder-plugin",
+      "skill": "mcp-builder",
+      "mcps": ["context7"],
+      "purpose": "MCP server development"
+    },
+    {
+      "id": "webapp-testing-plugin",
+      "skill": "webapp-testing",
+      "mcps": ["playwright"],
+      "purpose": "E2E testing and browser automation"
+    },
+    {
+      "id": "browser-automation-plugin",
+      "skill": "browser-automation",
+      "mcps": ["claude-in-chrome"],
+      "purpose": "Full browser control"
+    },
+    {
+      "id": "video-generator-plugin",
+      "skill": "video-generator",
+      "mcps": ["remotion"],
+      "purpose": "Programmatic video creation"
+    },
+    {
+      "id": "git-workflow-plugin",
+      "skill": "commit-work",
+      "mcps": ["github"],
+      "purpose": "Git commits and PR management"
+    },
+    {
+      "id": "context7-plugin",
+      "skill": null,
+      "mcps": ["context7"],
+      "purpose": "Direct docs access for any library"
+    },
+    {
+      "id": "playwright-plugin",
+      "skill": null,
+      "mcps": ["playwright"],
+      "purpose": "Direct browser automation"
+    },
+    {
+      "id": "remotion-plugin",
+      "skill": null,
+      "mcps": ["remotion"],
+      "purpose": "Direct video generation tools"
+    },
+    {
+      "id": "memory-plugin",
+      "skill": null,
+      "mcps": ["memory"],
+      "purpose": "Direct memory management"
+    }
+  ],
+  "categories": {
+    "frontend": "React, TypeScript, UI components, design systems",
+    "backend": "Database, auth, serverless, BaaS",
+    "deployment": "CI/CD, hosting, environment management",
+    "payments": "Stripe integration, checkout, subscriptions",
+    "marketing": "Copywriting, SEO, campaigns, psychology",
+    "cro": "Conversion rate optimization, A/B testing",
+    "documentation": "Docs, diagrams, office files, README",
+    "workflow": "Git, debugging, session handoff, requirements",
+    "communication": "Professional writing, feedback, meetings",
+    "design": "Visual design, themes, video, presentations",
+    "architecture": "C4, MCP building, plugins, skills",
+    "integrations": "External AI, monitoring, project management",
+    "utilities": "Naming, domains, web scraping, humanizer"
+  },
+  "skills": [
+    {
+      "id": "ab-test-setup",
+      "name": "A/B Test Setup",
+      "category": "cro",
+      "triggers": ["a/b test", "experiment", "split test", "variant"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "analytics-tracking",
+      "name": "Analytics Tracking",
+      "category": "marketing",
+      "triggers": ["analytics", "tracking", "measurement", "GA4", "events"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "backend-to-frontend-handoff-docs",
+      "name": "Backend to Frontend Handoff",
+      "category": "documentation",
+      "triggers": ["API handoff", "backend docs", "frontend integration", "API documentation"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "brand-guidelines",
+      "name": "Brand Guidelines",
+      "category": "design",
+      "triggers": ["brand", "brand colors", "typography", "brand identity"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "anthropic"
+    },
+    {
+      "id": "c4-architecture",
+      "name": "C4 Architecture",
+      "category": "architecture",
+      "triggers": ["C4", "architecture diagram", "system context", "container diagram"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "canvas-design",
+      "name": "Canvas Design",
+      "category": "design",
+      "triggers": ["canvas", "visual art", "png", "pdf design", "graphic"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "anthropic"
+    },
+    {
+      "id": "command-creator",
+      "name": "Command Creator",
+      "category": "architecture",
+      "triggers": ["create command", "slash command", "CLI command"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "commit-work",
+      "name": "Commit Work",
+      "category": "workflow",
+      "triggers": ["commit", "git commit", "stage changes", "commit message"],
+      "cli": "gh",
+      "mcp": "github",
+      "plugin": "git-workflow-plugin",
+      "source": "softaworks"
+    },
+    {
+      "id": "competitor-alternatives",
+      "name": "Competitor Alternatives",
+      "category": "marketing",
+      "triggers": ["competitor", "alternatives", "comparison", "vs page"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "copy-editing",
+      "name": "Copy Editing",
+      "category": "marketing",
+      "triggers": ["edit copy", "review copy", "improve copy", "copy feedback"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "copywriting",
+      "name": "Copywriting",
+      "category": "marketing",
+      "triggers": ["copywriting", "marketing copy", "headlines", "CTAs", "landing page copy"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "crafting-effective-readmes",
+      "name": "Crafting Effective READMEs",
+      "category": "documentation",
+      "triggers": ["README", "readme", "project documentation", "repo docs"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "daily-meeting-update",
+      "name": "Daily Meeting Update",
+      "category": "communication",
+      "triggers": ["daily", "standup", "scrum", "meeting update", "status update"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "database-schema-designer",
+      "name": "Database Schema Designer",
+      "category": "backend",
+      "triggers": ["schema", "database design", "ERD", "tables", "SQL schema"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "datadog-cli",
+      "name": "Datadog CLI",
+      "category": "integrations",
+      "triggers": ["datadog", "logs", "metrics", "monitoring", "incident", "observability"],
+      "cli": "datadog",
+      "mcp": null,
+      "plugin": null,
+      "source": "nickmohler"
+    },
+    {
+      "id": "dependency-updater",
+      "name": "Dependency Updater",
+      "category": "workflow",
+      "triggers": ["update dependencies", "npm update", "outdated", "upgrade packages"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "design-system-starter",
+      "name": "Design System Starter",
+      "category": "frontend",
+      "triggers": ["design system", "design tokens", "component library", "style guide"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "difficult-workplace-conversations",
+      "name": "Difficult Workplace Conversations",
+      "category": "communication",
+      "triggers": ["difficult conversation", "conflict", "performance", "tough feedback"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "docx",
+      "name": "DOCX",
+      "category": "documentation",
+      "triggers": ["docx", "word", "word document", ".docx"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "anthropic"
+    },
+    {
+      "id": "drizzle-orm",
+      "name": "Drizzle ORM",
+      "category": "backend",
+      "triggers": ["drizzle", "ORM", "drizzle-orm", "TypeScript ORM", "postgres"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "email-sequence",
+      "name": "Email Sequence",
+      "category": "marketing",
+      "triggers": ["email sequence", "drip campaign", "email flow", "nurture sequence"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "excalidraw",
+      "name": "Excalidraw",
+      "category": "documentation",
+      "triggers": ["excalidraw", "whiteboard", "diagram", "sketch", "flowchart"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "anthropic"
+    },
+    {
+      "id": "feedback-mastery",
+      "name": "Feedback Mastery",
+      "category": "communication",
+      "triggers": ["feedback", "constructive feedback", "giving feedback", "receiving feedback"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "firebase-guide",
+      "name": "Firebase Guide",
+      "category": "backend",
+      "triggers": ["firebase", "firestore", "firebase auth", "firebase hosting", "cloud functions"],
+      "cli": "firebase",
+      "mcp": null,
+      "plugin": null,
+      "source": "nickmohler"
+    },
+    {
+      "id": "form-cro",
+      "name": "Form CRO",
+      "category": "cro",
+      "triggers": ["form optimization", "form conversion", "form UX", "form fields"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "free-tool-strategy",
+      "name": "Free Tool Strategy",
+      "category": "marketing",
+      "triggers": ["free tool", "lead magnet", "freemium", "free product"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "frontend-design",
+      "name": "Frontend Design",
+      "category": "frontend",
+      "triggers": ["frontend architecture", "component design", "UI architecture"],
+      "cli": null,
+      "mcp": "context7",
+      "plugin": "frontend-design-plugin",
+      "source": "softaworks"
+    },
+    {
+      "id": "frontend-to-backend-requirements",
+      "name": "Frontend to Backend Requirements",
+      "category": "documentation",
+      "triggers": ["frontend requirements", "API requirements", "backend spec", "data needs"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "github-workflow",
+      "name": "GitHub Workflow",
+      "category": "workflow",
+      "triggers": ["github", "gh", "create repo", "push to remote", "PR", "release", "tag"],
+      "cli": "gh",
+      "mcp": null,
+      "plugin": null,
+      "source": "nickmohler"
+    },
+    {
+      "id": "google-cloud-setup",
+      "name": "Google Cloud Setup",
+      "category": "deployment",
+      "triggers": ["gcloud", "google cloud", "cloud run", "GCP", "cloud functions"],
+      "cli": "gcloud",
+      "mcp": null,
+      "plugin": null,
+      "source": "nickmohler"
+    },
+    {
+      "id": "humanizer",
+      "name": "Humanizer",
+      "category": "utilities",
+      "triggers": ["humanize", "AI detection", "natural writing", "human-like"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "jira",
+      "name": "Jira",
+      "category": "integrations",
+      "triggers": ["jira", "ticket", "issue", "sprint", "PROJ-123"],
+      "cli": "jira",
+      "mcp": "atlassian",
+      "plugin": null,
+      "source": "nickmohler"
+    },
+    {
+      "id": "launch-strategy",
+      "name": "Launch Strategy",
+      "category": "marketing",
+      "triggers": ["launch", "product launch", "release strategy", "go-to-market"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "marketing-psychology",
+      "name": "Marketing Psychology",
+      "category": "marketing",
+      "triggers": ["psychology", "behavioral", "persuasion", "mental models", "consumer behavior"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "marp-slide",
+      "name": "Marp Slide",
+      "category": "design",
+      "triggers": ["marp", "markdown slides", "presentation", "slide deck"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "mcp-builder",
+      "name": "MCP Builder",
+      "category": "architecture",
+      "triggers": ["MCP", "MCP server", "model context protocol", "build MCP"],
+      "cli": null,
+      "mcp": "context7",
+      "plugin": "mcp-builder-plugin",
+      "source": "softaworks"
+    },
+    {
+      "id": "meme-factory",
+      "name": "Meme Factory",
+      "category": "design",
+      "triggers": ["meme", "memes", "memegen", "humor"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "mermaid-diagrams",
+      "name": "Mermaid Diagrams",
+      "category": "documentation",
+      "triggers": ["mermaid", "diagram", "flowchart", "sequence diagram", "class diagram"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "netlify-deployment",
+      "name": "Netlify Deployment",
+      "category": "deployment",
+      "triggers": ["netlify", "netlify deploy", "netlify functions", "netlify env"],
+      "cli": "netlify",
+      "mcp": null,
+      "plugin": null,
+      "source": "nickmohler"
+    },
+    {
+      "id": "oauth-setup",
+      "name": "OAuth Setup",
+      "category": "backend",
+      "triggers": ["OAuth", "social login", "Google auth", "GitHub auth", "NextAuth"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "onboarding-cro",
+      "name": "Onboarding CRO",
+      "category": "cro",
+      "triggers": ["onboarding", "user activation", "first-run", "time-to-value"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "openapi-to-typescript",
+      "name": "OpenAPI to TypeScript",
+      "category": "backend",
+      "triggers": ["OpenAPI", "swagger", "API types", "TypeScript types", "codegen"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "page-cro",
+      "name": "Page CRO",
+      "category": "cro",
+      "triggers": ["landing page", "page optimization", "conversion", "page CRO"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "paid-ads",
+      "name": "Paid Ads",
+      "category": "marketing",
+      "triggers": ["paid ads", "Google Ads", "Meta ads", "PPC", "advertising"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "paywall-upgrade-cro",
+      "name": "Paywall Upgrade CRO",
+      "category": "cro",
+      "triggers": ["paywall", "upgrade", "upsell", "pricing modal", "feature gate"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "pdf",
+      "name": "PDF",
+      "category": "documentation",
+      "triggers": ["pdf", "PDF", "extract pdf", "create pdf", "merge pdf"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "anthropic"
+    },
+    {
+      "id": "perplexity",
+      "name": "Perplexity",
+      "category": "integrations",
+      "triggers": ["search", "find", "look up", "research", "what's the latest"],
+      "cli": null,
+      "mcp": "perplexity",
+      "plugin": null,
+      "source": "nickmohler"
+    },
+    {
+      "id": "plugin-forge",
+      "name": "Plugin Forge",
+      "category": "architecture",
+      "triggers": ["plugin", "create plugin", "plugin manifest", "marketplace"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "popup-cro",
+      "name": "Popup CRO",
+      "category": "cro",
+      "triggers": ["popup", "modal", "overlay", "slide-in", "banner"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "pptx",
+      "name": "PPTX",
+      "category": "documentation",
+      "triggers": ["pptx", "powerpoint", "presentation", ".pptx", "slides"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "anthropic"
+    },
+    {
+      "id": "pricing-strategy",
+      "name": "Pricing Strategy",
+      "category": "marketing",
+      "triggers": ["pricing", "pricing model", "monetization", "price point"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "professional-communication",
+      "name": "Professional Communication",
+      "category": "communication",
+      "triggers": ["professional email", "business writing", "team messaging", "formal communication"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "programmatic-seo",
+      "name": "Programmatic SEO",
+      "category": "marketing",
+      "triggers": ["programmatic SEO", "pSEO", "template pages", "automated SEO"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "qa-test-planner",
+      "name": "QA Test Planner",
+      "category": "workflow",
+      "triggers": ["test plan", "QA", "test cases", "regression", "bug report"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "react-best-practices",
+      "name": "React Best Practices",
+      "category": "frontend",
+      "triggers": ["react patterns", "react best practices", "react performance"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "vercel"
+    },
+    {
+      "id": "react-dev",
+      "name": "React Dev",
+      "category": "frontend",
+      "triggers": ["react", "react component", "react development", "TypeScript react"],
+      "cli": null,
+      "mcp": "context7",
+      "plugin": "react-dev-plugin",
+      "source": "softaworks"
+    },
+    {
+      "id": "recommend-skills",
+      "name": "Recommend Skills",
+      "category": "utilities",
+      "triggers": ["recommend skills", "which skills", "skill suggestions"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "nickmohler"
+    },
+    {
+      "id": "requirements-clarity",
+      "name": "Requirements Clarity",
+      "category": "workflow",
+      "triggers": ["requirements", "clarify requirements", "ambiguous", "spec"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "saas-starter-setup",
+      "name": "SaaS Starter Setup",
+      "category": "backend",
+      "triggers": ["SaaS starter", "Next.js starter", "boilerplate", "scaffold"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "saas-from-scratch",
+      "name": "SaaS From Scratch",
+      "category": "backend",
+      "triggers": ["build saas from scratch", "custom saas", "learn saas stack", "saas tutorial", "manual saas setup"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "nickmohler"
+    },
+    {
+      "id": "schema-markup",
+      "name": "Schema Markup",
+      "category": "marketing",
+      "triggers": ["schema", "structured data", "JSON-LD", "rich snippets"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "seo-audit",
+      "name": "SEO Audit",
+      "category": "marketing",
+      "triggers": ["SEO audit", "SEO review", "SEO analysis", "search optimization"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "session-handoff",
+      "name": "Session Handoff",
+      "category": "workflow",
+      "triggers": ["handoff", "session transfer", "context transfer", "resume tomorrow"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "signup-flow-cro",
+      "name": "Signup Flow CRO",
+      "category": "cro",
+      "triggers": ["signup", "registration", "account creation", "trial activation"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "coreyhaines"
+    },
+    {
+      "id": "skill-creator",
+      "name": "Skill Creator",
+      "category": "architecture",
+      "triggers": ["create skill", "new skill", "skill template"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "skill-judge",
+      "name": "Skill Judge",
+      "category": "architecture",
+      "triggers": ["evaluate skill", "skill quality", "skill review"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "skill-safety-check",
+      "name": "Skill Safety Check",
+      "category": "utilities",
+      "triggers": ["skill safety", "verify skill", "dangerous patterns"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "stripe-integration",
+      "name": "Stripe Integration",
+      "category": "payments",
+      "triggers": ["stripe", "payments", "checkout", "subscription", "billing"],
+      "cli": "stripe",
+      "mcp": null,
+      "plugin": null,
+      "source": "nickmohler"
+    },
+    {
+      "id": "supabase-guide",
+      "name": "Supabase Guide",
+      "category": "backend",
+      "triggers": ["supabase", "database", "auth", "realtime", "edge functions"],
+      "cli": "supabase",
+      "mcp": null,
+      "plugin": null,
+      "source": "nickmohler"
+    },
+    {
+      "id": "systematic-debugging",
+      "name": "Systematic Debugging",
+      "category": "workflow",
+      "triggers": ["debug", "debugging", "root cause", "bug", "investigate"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "obra"
+    },
+    {
+      "id": "theme-factory",
+      "name": "Theme Factory",
+      "category": "design",
+      "triggers": ["theme", "styling", "color scheme", "dark mode"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "anthropic"
+    },
+    {
+      "id": "update-skills-index",
+      "name": "Update Skills Index",
+      "category": "utilities",
+      "triggers": ["update index", "sync skills", "skills maintenance"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "nickmohler"
+    },
+    {
+      "id": "vercel-deployment",
+      "name": "Vercel Deployment",
+      "category": "deployment",
+      "triggers": ["vercel", "deploy", "preview deployment", "vercel env", "vercel domains"],
+      "cli": "vercel",
+      "mcp": null,
+      "plugin": null,
+      "source": "nickmohler"
+    },
+    {
+      "id": "video-generator",
+      "name": "Video Generator",
+      "category": "design",
+      "triggers": ["video", "remotion", "programmatic video", "video generation"],
+      "cli": null,
+      "mcp": "remotion",
+      "plugin": "video-generator-plugin",
+      "source": "anthropic"
+    },
+    {
+      "id": "web-design-guidelines",
+      "name": "Web Design Guidelines",
+      "category": "frontend",
+      "triggers": ["UI review", "accessibility", "web guidelines", "design review"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "vercel"
+    },
+    {
+      "id": "webapp-testing",
+      "name": "Webapp Testing",
+      "category": "workflow",
+      "triggers": ["E2E", "playwright", "browser testing", "automation"],
+      "cli": null,
+      "mcp": "playwright",
+      "plugin": "webapp-testing-plugin",
+      "source": "softaworks"
+    },
+    {
+      "id": "writing-clearly-and-concisely",
+      "name": "Writing Clearly and Concisely",
+      "category": "documentation",
+      "triggers": ["clear writing", "concise", "prose", "documentation writing"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "softaworks"
+    },
+    {
+      "id": "xlsx",
+      "name": "XLSX",
+      "category": "documentation",
+      "triggers": ["xlsx", "excel", "spreadsheet", ".xlsx", "workbook"],
+      "cli": null,
+      "mcp": null,
+      "plugin": null,
+      "source": "anthropic"
+    }
+  ],
+  "sources": {
+    "anthropic": {
+      "name": "Anthropic",
+      "count": 9,
+      "description": "Built-in Claude Code skills"
+    },
+    "vercel": {
+      "name": "Vercel Labs",
+      "count": 2,
+      "description": "React, web design, and deployment"
+    },
+    "coreyhaines": {
+      "name": "Corey Haines",
+      "count": 20,
+      "description": "Marketing, SEO, and CRO skills"
+    },
+    "softaworks": {
+      "name": "Softaworks",
+      "count": 33,
+      "description": "Development workflow and architecture"
+    },
+    "nickmohler": {
+      "name": "Nick Mohler",
+      "count": 12,
+      "description": "CLI integrations and orchestration"
+    },
+    "obra": {
+      "name": "obra/superpowers",
+      "count": 1,
+      "description": "Debugging methodology"
+    }
+  }
+}

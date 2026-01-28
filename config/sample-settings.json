@@ -1,0 +1,7 @@
+{
+  "$schema": "https://claude.ai/schemas/settings.json",
+  "_comment": "Copy this to ~/.claude/settings.json and customize",
+
+  "statusLine": true,
+  "theme": "dark"
+}

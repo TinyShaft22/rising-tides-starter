@@ -1,0 +1,8 @@
+{
+  "name": "browser-automation",
+  "description": "Browser automation via Claude in Chrome - screenshots, clicks, form filling, navigation",
+  "version": "1.0.0",
+  "author": {
+    "name": "Nick Mohler"
+  }
+}

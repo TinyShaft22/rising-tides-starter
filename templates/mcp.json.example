@@ -1,0 +1,34 @@
+{
+  "_comment": "Example .mcp.json for project-level MCP configuration",
+  "_docs": "See docs/MCP-SETUP-GUIDE.md for full documentation",
+
+  "mcpServers": {
+
+    "_note_context7": "Live documentation fetching - great for dev projects",
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
+
+    "_note_playwright": "Browser automation - great for testing",
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp"]
+    },
+
+    "_note_remotion": "Video generation - for video projects",
+    "remotion": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-server-remotion"]
+    },
+
+    "_note_github": "GitHub operations - often built-in, check first",
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-server-github"],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      }
+    }
+  }
+}

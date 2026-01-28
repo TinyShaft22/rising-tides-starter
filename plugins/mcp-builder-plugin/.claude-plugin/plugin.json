@@ -1,0 +1,8 @@
+{
+  "name": "mcp-builder",
+  "description": "Guide for creating high-quality MCP servers. Uses context7 for live SDK documentation.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Anthropic"
+  }
+}

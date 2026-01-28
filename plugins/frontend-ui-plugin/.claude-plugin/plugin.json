@@ -1,0 +1,8 @@
+{
+  "name": "frontend-ui",
+  "description": "Complete frontend development with context7 docs + shadcn component registry",
+  "version": "1.0.0",
+  "author": {
+    "name": "Nick Mohler"
+  }
+}

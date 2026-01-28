@@ -1,0 +1,8 @@
+{
+  "name": "git-workflow",
+  "description": "Git commit best practices with GitHub MCP. Logical commits, Conventional Commits, and PR creation.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Nick Mohler"
+  }
+}
