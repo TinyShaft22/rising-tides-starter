@@ -207,6 +207,20 @@ if command -v claude &> /dev/null; then
 else
     print_info "Installing Claude Code..."
     curl -fsSL https://claude.ai/install.sh | bash -s latest
+
+    # Add ~/.local/bin to PATH if not already there
+    if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+        export PATH="$HOME/.local/bin:$PATH"
+        SHELL_RC="$HOME/.zshrc"
+        if [ -f "$HOME/.bashrc" ] && [ ! -f "$HOME/.zshrc" ]; then
+            SHELL_RC="$HOME/.bashrc"
+        fi
+        if ! grep -q '\.local/bin' "$SHELL_RC" 2>/dev/null; then
+            echo '' >> "$SHELL_RC"
+            echo '# Claude Code' >> "$SHELL_RC"
+            echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$SHELL_RC"
+        fi
+    fi
     print_success "Claude Code installed"
 fi
 
