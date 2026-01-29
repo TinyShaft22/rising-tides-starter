@@ -16,18 +16,6 @@
 
 set -e  # Exit on any error
 
-# Ensure we're running from a file, not piped stdin.
-# When piped (curl | bash), child processes like Homebrew consume stdin
-# and eat the rest of the script. Re-exec from a temp file to avoid this.
-if [ -z "${__RT_FROM_FILE:-}" ]; then
-    TMPSCRIPT=$(mktemp /tmp/rt-setup-XXXXXXXX) || TMPSCRIPT="/tmp/rt-setup-$$.sh"
-    curl -fsSL "https://raw.githubusercontent.com/TinyShaft22/rising-tides-starter/main/scripts/setup-mac.sh" -o "$TMPSCRIPT" 2>/dev/null || true
-    if [ -s "$TMPSCRIPT" ]; then
-        export __RT_FROM_FILE=1
-        exec bash "$TMPSCRIPT" "$@"
-    fi
-    rm -f "$TMPSCRIPT" 2>/dev/null || true
-fi
 
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'

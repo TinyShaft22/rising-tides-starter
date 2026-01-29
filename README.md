@@ -30,10 +30,10 @@ The Rising Tides system uses **progressive disclosure** — you don't load all s
 Open Terminal and run:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/TinyShaft22/rising-tides-starter/main/scripts/setup-mac.sh | bash
+curl -fsSL https://raw.githubusercontent.com/TinyShaft22/rising-tides-starter/main/scripts/setup-mac.sh -o /tmp/setup.sh && bash /tmp/setup.sh
 ```
 
-> **Do NOT use `sudo`.** The script handles permissions internally. Running with `sudo` breaks Homebrew ownership and causes Claude config files to be owned by root.
+> **Do NOT use `sudo`.** The script will ask for your password when it needs admin access. Running with `sudo` breaks Homebrew and file ownership.
 
 Or if you've downloaded the starter pack:
 
@@ -62,7 +62,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 ### Linux (Ubuntu/Debian) / WSL2
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/TinyShaft22/rising-tides-starter/main/scripts/setup-linux.sh | bash
+curl -fsSL https://raw.githubusercontent.com/TinyShaft22/rising-tides-starter/main/scripts/setup-linux.sh -o /tmp/setup.sh && bash /tmp/setup.sh
 ```
 
 Or if you've downloaded the starter pack:
@@ -286,7 +286,7 @@ If you prefer step-by-step control:
 If the setup script stopped partway (e.g. after Node.js install), clean up and start fresh:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/TinyShaft22/rising-tides-starter/main/scripts/cleanup-mac.sh | bash
+curl -fsSL https://raw.githubusercontent.com/TinyShaft22/rising-tides-starter/main/scripts/cleanup-mac.sh -o /tmp/cleanup.sh && bash /tmp/cleanup.sh
 ```
 
 Then restart your terminal and re-run the setup (without `sudo`).
