@@ -45,19 +45,15 @@ echo -e "${BLUE}   Rising Tides - Complete Setup Script    ${NC}"
 echo -e "${BLUE}============================================${NC}"
 echo ""
 
-# Check for admin/sudo access (required for Homebrew and Xcode tools)
-if ! groups "$(whoami)" 2>/dev/null | grep -qw admin; then
-    echo -e "${RED}ERROR: Your macOS account ($(whoami)) is not an Administrator.${NC}"
+# Check this script is NOT run with sudo (causes Homebrew and PATH issues)
+if [ "$(id -u)" -eq 0 ]; then
+    echo -e "${RED}ERROR: Do not run this script with sudo.${NC}"
     echo ""
-    echo "Homebrew and Xcode tools require admin access to install."
+    echo "Run it as your normal user. The script will ask for your"
+    echo "password when it needs admin access."
     echo ""
-    echo "To fix this:"
-    echo "  1. Open System Settings → Users & Groups"
-    echo "  2. Have an admin user make your account an Administrator"
-    echo "  3. Log out and back in"
-    echo "  4. Re-run this script"
-    echo ""
-    echo "Or run this script from an admin account instead."
+    echo "Correct usage:"
+    echo "  curl -fsSL https://raw.githubusercontent.com/TinyShaft22/rising-tides-starter/main/scripts/setup-mac.sh -o /tmp/setup.sh && bash /tmp/setup.sh"
     exit 1
 fi
 
@@ -118,7 +114,7 @@ if command -v brew &> /dev/null; then
     print_skip "Homebrew"
 else
     print_info "Installing Homebrew..."
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     # Add Homebrew to PATH for this session
     if [[ -f "/opt/homebrew/bin/brew" ]]; then
