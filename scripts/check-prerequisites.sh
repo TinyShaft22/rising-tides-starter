@@ -56,7 +56,7 @@ if command -v "claude" &> /dev/null; then
     ((PASS++))
 else
     echo "[INFO] Claude Code is NOT installed"
-    echo "       Install with: curl -fsSL https://cli.anthropic.com/install.sh | sh"
+    echo "       Install with: curl -fsSL https://claude.ai/install.sh | bash -s latest"
 fi
 echo ""
 
@@ -92,7 +92,7 @@ if [ $FAIL -eq 0 ]; then
     echo "[SUCCESS] All prerequisites are installed!"
     echo ""
     echo "Next step: Install Claude Code"
-    echo "  curl -fsSL https://cli.anthropic.com/install.sh | sh"
+    echo "  curl -fsSL https://claude.ai/install.sh | bash -s latest"
     echo "  claude auth login"
 else
     echo "[ACTION REQUIRED] Please install missing prerequisites"

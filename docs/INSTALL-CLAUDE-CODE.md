@@ -11,13 +11,13 @@ Claude Code uses a native installer. No prerequisites needed for the install its
 ### Mac / Linux / WSL2
 
 ```bash
-curl -fsSL https://cli.anthropic.com/install.sh | sh
+curl -fsSL https://claude.ai/install.sh | bash -s latest
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
-irm https://cli.anthropic.com/install.ps1 | iex
+irm https://claude.ai/install.ps1 | iex
 ```
 
 ### Verify Installation

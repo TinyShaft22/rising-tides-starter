@@ -193,7 +193,7 @@ if command -v claude &> /dev/null; then
     claude update 2>/dev/null && print_success "Claude Code updated" || print_info "Already up to date (or update not available)"
 else
     print_info "Installing Claude Code..."
-    curl -fsSL https://cli.anthropic.com/install.sh | sh
+    curl -fsSL https://claude.ai/install.sh | bash -s latest
     print_success "Claude Code installed"
 fi
 

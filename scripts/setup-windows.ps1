@@ -215,7 +215,7 @@ if (Test-Command "claude") {
     }
 } else {
     Print-Info "Installing Claude Code..."
-    irm https://cli.anthropic.com/install.ps1 | iex
+    irm https://claude.ai/install.ps1 | iex
     Refresh-Path
     Print-Success "Claude Code installed"
 }
