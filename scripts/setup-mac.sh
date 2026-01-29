@@ -16,6 +16,23 @@
 
 set -e  # Exit on any error
 
+# Ensure we're running from a file, not piped stdin.
+# When piped (curl | bash), child processes like Homebrew consume stdin
+# and eat the rest of the script. Re-exec from a temp file to avoid this.
+if [ -z "${__RT_FROM_FILE:-}" ]; then
+    TMPSCRIPT="$(mktemp /tmp/rising-tides-setup.XXXXXX.sh)"
+    # Re-download the script to the temp file
+    curl -fsSL "https://raw.githubusercontent.com/TinyShaft22/rising-tides-starter/main/scripts/setup-mac.sh" -o "$TMPSCRIPT" 2>/dev/null || {
+        # If re-download fails, we might already be running from a file — continue
+        true
+    }
+    if [ -s "$TMPSCRIPT" ]; then
+        export __RT_FROM_FILE=1
+        exec bash "$TMPSCRIPT" "$@"
+    fi
+    rm -f "$TMPSCRIPT" 2>/dev/null || true
+fi
+
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -89,7 +106,7 @@ if command -v brew &> /dev/null; then
     print_skip "Homebrew"
 else
     print_info "Installing Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     # Add Homebrew to PATH for this session
     if [[ -f "/opt/homebrew/bin/brew" ]]; then
