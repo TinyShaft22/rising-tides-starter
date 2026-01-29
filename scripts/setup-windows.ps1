@@ -124,7 +124,7 @@ if (Test-Command "git") {
     Print-Skip "Git ($gitVersion)"
 } else {
     Print-Info "Installing Git..."
-    winget install Git.Git --accept-package-agreements --accept-source-agreements --silent
+    winget install Git.Git --source winget --accept-package-agreements --accept-source-agreements --silent
     Refresh-Path
     Start-Sleep -Seconds 2
     Print-Success "Git installed"
@@ -340,9 +340,27 @@ if ((Test-Path $localSkillsDir) -and (Test-Path $localPluginsDir)) {
             Remove-Item $tempDir -Recurse -Force
         }
 
-        git clone --depth 1 $SKILLS_REPO $tempDir 2>$null
+        # Try git clone first, fall back to zip download
+        $cloneSuccess = $false
+        Refresh-Path
+        if (Test-Command "git") {
+            git clone --depth 1 $SKILLS_REPO $tempDir 2>$null
+            if ($LASTEXITCODE -eq 0) { $cloneSuccess = $true }
+        }
 
-        if ($LASTEXITCODE -eq 0) {
+        if (-not $cloneSuccess) {
+            Print-Info "Git clone failed, trying zip download..."
+            $zipUrl = "https://github.com/TinyShaft22/rising-tides-starter/archive/refs/heads/main.zip"
+            $zipFile = Join-Path $env:TEMP "rising-tides-starter.zip"
+            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+            Invoke-WebRequest -Uri $zipUrl -OutFile $zipFile -UseBasicParsing
+            Expand-Archive -Path $zipFile -DestinationPath $env:TEMP -Force
+            $tempDir = Join-Path $env:TEMP "rising-tides-starter-main"
+            Remove-Item $zipFile -Force -ErrorAction SilentlyContinue
+            $cloneSuccess = (Test-Path $tempDir)
+        }
+
+        if ($cloneSuccess) {
             # Copy skills
             $tempSkillsDir = Join-Path $tempDir "skills"
             if (Test-Path $tempSkillsDir) {
