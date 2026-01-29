@@ -216,6 +216,17 @@ if (Test-Command "claude") {
 } else {
     Print-Info "Installing Claude Code..."
     irm https://claude.ai/install.ps1 | iex
+
+    # Add Claude to user PATH if not already there
+    $claudeBinDir = "$env:USERPROFILE\.local\bin"
+    if (Test-Path $claudeBinDir) {
+        $userPath = [System.Environment]::GetEnvironmentVariable("Path", "User")
+        if ($userPath -notlike "*$claudeBinDir*") {
+            [System.Environment]::SetEnvironmentVariable("Path", "$userPath;$claudeBinDir", "User")
+            Print-Info "Added $claudeBinDir to user PATH"
+        }
+    }
+
     Refresh-Path
     Print-Success "Claude Code installed"
 }
@@ -335,21 +346,29 @@ if ((Test-Path $localSkillsDir) -and (Test-Path $localPluginsDir)) {
 
     Refresh-Path
 
-    try {
-        if (Test-Path $tempDir) {
-            Remove-Item $tempDir -Recurse -Force
-        }
+    if (Test-Path $tempDir) {
+        Remove-Item $tempDir -Recurse -Force -ErrorAction SilentlyContinue
+    }
 
-        # Try git clone first, fall back to zip download
-        $cloneSuccess = $false
-        Refresh-Path
-        if (Test-Command "git") {
+    # Method 1: Try git clone
+    $downloadSuccess = $false
+    Refresh-Path
+    if (Test-Command "git") {
+        try {
+            Print-Info "Trying git clone..."
             git clone --depth 1 $SKILLS_REPO $tempDir 2>$null
-            if ($LASTEXITCODE -eq 0) { $cloneSuccess = $true }
+            if ($LASTEXITCODE -eq 0 -and (Test-Path $tempDir)) {
+                $downloadSuccess = $true
+            }
+        } catch {
+            Print-Info "Git clone did not succeed"
         }
+    }
 
-        if (-not $cloneSuccess) {
-            Print-Info "Git clone failed, trying zip download..."
+    # Method 2: Fall back to zip download
+    if (-not $downloadSuccess) {
+        try {
+            Print-Info "Trying zip download..."
             $zipUrl = "https://github.com/TinyShaft22/rising-tides-starter/archive/refs/heads/main.zip"
             $zipFile = Join-Path $env:TEMP "rising-tides-starter.zip"
             [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -357,10 +376,16 @@ if ((Test-Path $localSkillsDir) -and (Test-Path $localPluginsDir)) {
             Expand-Archive -Path $zipFile -DestinationPath $env:TEMP -Force
             $tempDir = Join-Path $env:TEMP "rising-tides-starter-main"
             Remove-Item $zipFile -Force -ErrorAction SilentlyContinue
-            $cloneSuccess = (Test-Path $tempDir)
+            if (Test-Path $tempDir) {
+                $downloadSuccess = $true
+            }
+        } catch {
+            Print-Info "Zip download did not succeed: $_"
         }
+    }
 
-        if ($cloneSuccess) {
+    if ($downloadSuccess) {
+        try {
             # Copy skills
             $tempSkillsDir = Join-Path $tempDir "skills"
             if (Test-Path $tempSkillsDir) {
@@ -387,10 +412,10 @@ if ((Test-Path $localSkillsDir) -and (Test-Path $localPluginsDir)) {
 
             Remove-Item $tempDir -Recurse -Force -ErrorAction SilentlyContinue
             $INSTALL_SUCCESS = $true
-        } else {
-            throw "Clone failed"
+        } catch {
+            Print-Error "Failed to copy skills: $_"
         }
-    } catch {
+    } else {
         Print-Error "Could not download skills pack from GitHub"
         Write-Host ""
         Write-Host "This usually means one of:" -ForegroundColor Yellow
