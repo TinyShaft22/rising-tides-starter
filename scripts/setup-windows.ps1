@@ -533,13 +533,16 @@ Write-Host ""
 Write-Host "  3. Authenticate Claude Code:"
 Write-Host "     claude auth login" -ForegroundColor Green
 Write-Host ""
-Write-Host "  4. Start Claude Code:"
+Write-Host "  4. Navigate to a project folder:"
+Write-Host "     cd C:\Users\$env:USERNAME\my-project" -ForegroundColor Green
+Write-Host ""
+Write-Host "  5. Start Claude Code from your project:"
 Write-Host "     claude" -ForegroundColor Green
 Write-Host ""
-Write-Host "  5. Get skill recommendations for any project:"
+Write-Host "  6. Get skill recommendations for your project:"
 Write-Host "     /recommend skills" -ForegroundColor Green
 Write-Host ""
-Write-Host "  6. Or try skills directly:"
+Write-Host "  7. Or try skills directly:"
 Write-Host "     /copywriting" -ForegroundColor Green -NoNewline
 Write-Host " write a headline for my SaaS"
 Write-Host "     /react-dev" -ForegroundColor Green -NoNewline
