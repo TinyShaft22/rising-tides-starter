@@ -63,7 +63,7 @@ Skills don't consume context until you invoke them. You're paying ~4% for access
 ### Get Help
 
 - Community: https://www.skool.com/rising-tides-9034
-- Issues: https://github.com/TinyShaft22/rising-tides-starter/issues
+- Issues: https://github.com/SunsetSystemsAI/rising-tides-starter/issues
 
 ### Next Steps
 

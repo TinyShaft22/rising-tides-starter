@@ -41,7 +41,7 @@ if [ "$(id -u)" -eq 0 ]; then
     echo "password when it needs admin access."
     echo ""
     echo "Correct usage:"
-    echo "  curl -fsSL https://raw.githubusercontent.com/TinyShaft22/rising-tides-starter/main/scripts/setup-mac.sh -o /tmp/setup.sh && bash /tmp/setup.sh"
+    echo "  curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/setup-mac.sh -o /tmp/setup.sh && bash /tmp/setup.sh"
     exit 1
 fi
 
@@ -328,7 +328,7 @@ else
     print_info "Downloading Rising Tides Skills Pack from GitHub..."
 
     TEMP_DIR=$(mktemp -d)
-    SKILLS_REPO="https://github.com/TinyShaft22/rising-tides-starter.git"
+    SKILLS_REPO="https://github.com/SunsetSystemsAI/rising-tides-starter.git"
 
     # Method 1: Try git clone
     DOWNLOAD_SUCCESS=false
@@ -344,7 +344,7 @@ else
     # Method 2: Fall back to zip download
     if [ "$DOWNLOAD_SUCCESS" = false ]; then
         print_info "Trying zip download..."
-        ZIP_URL="https://github.com/TinyShaft22/rising-tides-starter/archive/refs/heads/main.zip"
+        ZIP_URL="https://github.com/SunsetSystemsAI/rising-tides-starter/archive/refs/heads/main.zip"
         ZIP_FILE="$TEMP_DIR/starter.zip"
         mkdir -p "$TEMP_DIR"
         if curl -fsSL "$ZIP_URL" -o "$ZIP_FILE" 2>/dev/null; then

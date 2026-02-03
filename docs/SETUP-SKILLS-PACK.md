@@ -62,7 +62,7 @@ Or clone from GitHub:
 
 ```bash
 # Clone to a temp location
-git clone --depth 1 https://github.com/TinyShaft22/rising-tides-starter.git /tmp/rising-tides
+git clone --depth 1 https://github.com/SunsetSystemsAI/rising-tides-starter.git /tmp/rising-tides
 
 # Copy to ~/.claude/
 cp -r /tmp/rising-tides/skills/* ~/.claude/skills/
@@ -280,7 +280,7 @@ vercel login
 
 ```bash
 # Download latest
-git clone --depth 1 https://github.com/TinyShaft22/rising-tides-starter.git /tmp/rising-tides
+git clone --depth 1 https://github.com/SunsetSystemsAI/rising-tides-starter.git /tmp/rising-tides
 
 # Copy updated files
 cp -r /tmp/rising-tides/skills/* ~/.claude/skills/
@@ -365,6 +365,18 @@ rm -rf /tmp/rising-tides
 
 ---
 
+## Companion Plugins (Optional)
+
+Anthropic offers enterprise knowledge-work plugins that complement Rising Tides. These cover non-dev areas like sales, legal, finance, and product management.
+
+```bash
+claude plugins add knowledge-work-plugins/{plugin-id}
+```
+
+Run `/recommend skills` in any project — it will suggest relevant companion plugins alongside Rising Tides skills.
+
+---
+
 ## Next Steps
 
 You're all set! Try these:
@@ -386,7 +398,7 @@ claude
 ## Support
 
 - **Community:** [Rising Tides on Skool](https://www.skool.com/rising-tides-9034)
-- **Skills Pack Issues:** [GitHub Issues](https://github.com/TinyShaft22/rising-tides-starter/issues)
+- **Skills Pack Issues:** [GitHub Issues](https://github.com/SunsetSystemsAI/rising-tides-starter/issues)
 
 ---
 

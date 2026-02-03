@@ -342,7 +342,7 @@ if ((Test-Path $localSkillsDir) -and (Test-Path $localPluginsDir)) {
     Print-Info "Downloading Rising Tides Skills Pack from GitHub..."
 
     $tempDir = Join-Path $env:TEMP "rising-tides-temp"
-    $SKILLS_REPO = "https://github.com/TinyShaft22/rising-tides-starter.git"
+    $SKILLS_REPO = "https://github.com/SunsetSystemsAI/rising-tides-starter.git"
 
     Refresh-Path
 
@@ -369,7 +369,7 @@ if ((Test-Path $localSkillsDir) -and (Test-Path $localPluginsDir)) {
     if (-not $downloadSuccess) {
         try {
             Print-Info "Trying zip download..."
-            $zipUrl = "https://github.com/TinyShaft22/rising-tides-starter/archive/refs/heads/main.zip"
+            $zipUrl = "https://github.com/SunsetSystemsAI/rising-tides-starter/archive/refs/heads/main.zip"
             $zipFile = Join-Path $env:TEMP "rising-tides-starter.zip"
             [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
             Invoke-WebRequest -Uri $zipUrl -OutFile $zipFile -UseBasicParsing

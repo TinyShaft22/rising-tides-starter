@@ -30,7 +30,7 @@ The Rising Tides system uses **progressive disclosure** — you don't load all s
 Open Terminal and run:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/TinyShaft22/rising-tides-starter/main/scripts/setup-mac.sh -o /tmp/setup.sh && bash /tmp/setup.sh
+curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/setup-mac.sh -o /tmp/setup.sh && bash /tmp/setup.sh
 ```
 
 > **Do NOT use `sudo`.** The script will ask for your password when it needs admin access. Running with `sudo` breaks Homebrew and file ownership.
@@ -48,7 +48,7 @@ Open PowerShell **as Administrator** and run:
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/TinyShaft22/rising-tides-starter/main/scripts/setup-windows.ps1' -OutFile "$env:TEMP\setup-windows.ps1"
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/setup-windows.ps1' -OutFile "$env:TEMP\setup-windows.ps1"
 & "$env:TEMP\setup-windows.ps1"
 ```
 
@@ -62,7 +62,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 ### Linux (Ubuntu/Debian) / WSL2
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/TinyShaft22/rising-tides-starter/main/scripts/setup-linux.sh -o /tmp/setup.sh && bash /tmp/setup.sh
+curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/setup-linux.sh -o /tmp/setup.sh && bash /tmp/setup.sh
 ```
 
 Or if you've downloaded the starter pack:
@@ -119,6 +119,22 @@ Claude analyzes your project and shows which skills to import (and which to skip
 /react-dev create a login form component
 /commit-work review and commit my changes
 ```
+
+---
+
+## Optional: Anthropic Enterprise Plugins
+
+After setup, you can also install Anthropic's enterprise knowledge-work plugins for non-dev workflows:
+
+```bash
+claude plugins add knowledge-work-plugins/productivity
+claude plugins add knowledge-work-plugins/sales
+claude plugins add knowledge-work-plugins/data
+```
+
+These cover areas like sales, legal, finance, and product management — complementing Rising Tides' developer-focused skills. Run `/recommend skills` in any project to see which companion plugins are relevant.
+
+Full list: productivity, sales, customer-support, product-management, marketing, legal, finance, data, enterprise-search, bio-research, cowork-plugin-management.
 
 ---
 
@@ -286,7 +302,7 @@ If you prefer step-by-step control:
 If the setup script stopped partway (e.g. after Node.js install), clean up and start fresh:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/TinyShaft22/rising-tides-starter/main/scripts/cleanup-mac.sh -o /tmp/cleanup.sh && bash /tmp/cleanup.sh
+curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/cleanup-mac.sh -o /tmp/cleanup.sh && bash /tmp/cleanup.sh
 ```
 
 Then restart your terminal and re-run the setup (without `sudo`).
@@ -416,8 +432,8 @@ New user starter pack/
 ## Support
 
 - **Community:** [Rising Tides on Skool](https://www.skool.com/rising-tides-9034) — Get help, share wins
-- **Issues:** [GitHub Issues](https://github.com/TinyShaft22/rising-tides-starter/issues)
-- **Skills Pack:** [Rising Tides Pack](https://github.com/TinyShaft22/rising-tides-pack)
+- **Issues:** [GitHub Issues](https://github.com/SunsetSystemsAI/rising-tides-starter/issues)
+- **Skills Pack:** [Rising Tides Pack](https://github.com/SunsetSystemsAI/rising-tides-pack)
 
 ---
 
