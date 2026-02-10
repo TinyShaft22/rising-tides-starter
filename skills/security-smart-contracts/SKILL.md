@@ -3,6 +3,8 @@ name: security-smart-contracts
 description: "Use when auditing or building secure smart contracts. Invoke for Solidity, Solana, Cairo, CosmWasm, TON, Substrate, Algorand vulnerability scanning, token integration, secure workflow."
 ---
 
+> **Context Notice:** This is a comprehensive smart contract security reference (~25k tokens). For best results, start a fresh Claude session dedicated to contract auditing. This ensures maximum context is available for analyzing your contracts.
+
 # algorand-vulnerability-scanner
 
 # Algorand Vulnerability Scanner

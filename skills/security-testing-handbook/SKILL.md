@@ -3,6 +3,8 @@ name: security-testing-handbook
 description: "Use when performing security testing. Invoke for fuzzing, coverage analysis, AFL, libFuzzer, AddressSanitizer, Atheris, cargo-fuzz, OSS-Fuzz, Wycheproof, harness writing, constant-time testing."
 ---
 
+> **Context Notice:** This is a comprehensive security testing reference (~70k tokens). For best results, start a fresh Claude session dedicated to security testing. This ensures maximum context is available for analyzing your codebase.
+
 # address-sanitizer
 
 # AddressSanitizer (ASan)
