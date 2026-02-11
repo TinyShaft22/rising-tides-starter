@@ -164,10 +164,10 @@ if (Test-Path $settingsFile) {
 # Check Tool Search
 # -------------------------------------------
 
-if ($env:ENABLE_TOOL_SEARCH -eq "auto") {
-    Check-Pass "Tool Search enabled (ENABLE_TOOL_SEARCH=auto)"
+if ($env:ENABLE_TOOL_SEARCH -eq "true") {
+    Check-Pass "Tool Search enabled (ENABLE_TOOL_SEARCH=true)"
 } else {
-    Check-Warn "Tool Search not enabled" "Add `$env:ENABLE_TOOL_SEARCH = 'auto' to your PowerShell profile"
+    Check-Warn "Tool Search not enabled" "Add `$env:ENABLE_TOOL_SEARCH = 'true' to your PowerShell profile"
 }
 
 # -------------------------------------------

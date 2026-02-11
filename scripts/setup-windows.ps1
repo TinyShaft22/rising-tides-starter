@@ -281,8 +281,8 @@ $profileContent = Get-Content $profilePath -ErrorAction SilentlyContinue
 if ($profileContent -notmatch "ENABLE_TOOL_SEARCH") {
     Print-Info "Adding ENABLE_TOOL_SEARCH to PowerShell profile..."
     Add-Content $profilePath "`n# Rising Tides - Tool Search for MCP efficiency"
-    Add-Content $profilePath '$env:ENABLE_TOOL_SEARCH = "auto"'
-    $env:ENABLE_TOOL_SEARCH = "auto"
+    Add-Content $profilePath '$env:ENABLE_TOOL_SEARCH = "true"'
+    $env:ENABLE_TOOL_SEARCH = "true"
     Print-Success "Tool Search enabled"
 } else {
     Print-Skip "ENABLE_TOOL_SEARCH already in profile"
@@ -489,7 +489,7 @@ Write-Host "  [OK] Node.js $nodeVer"
 Write-Host "  [OK] npm $npmVer"
 Write-Host "  [OK] Claude Code"
 Write-Host "  [OK] Status line enabled"
-Write-Host "  [OK] Tool Search enabled (ENABLE_TOOL_SEARCH=auto)"
+Write-Host "  [OK] Tool Search enabled (ENABLE_TOOL_SEARCH=true)"
 
 # Show skills summary if installed
 if ($INSTALL_SUCCESS -and (Test-Path $skillsDir)) {

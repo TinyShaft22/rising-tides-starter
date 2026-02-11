@@ -346,8 +346,8 @@ if ! grep -q "ENABLE_TOOL_SEARCH" "$SHELL_PROFILE" 2>/dev/null; then
     print_info "Adding ENABLE_TOOL_SEARCH to shell profile..."
     echo '' >> "$SHELL_PROFILE"
     echo '# Rising Tides - Tool Search for MCP efficiency' >> "$SHELL_PROFILE"
-    echo 'export ENABLE_TOOL_SEARCH=auto' >> "$SHELL_PROFILE"
-    export ENABLE_TOOL_SEARCH=auto
+    echo 'export ENABLE_TOOL_SEARCH=true' >> "$SHELL_PROFILE"
+    export ENABLE_TOOL_SEARCH=true
     print_success "Tool Search enabled"
 else
     print_skip "ENABLE_TOOL_SEARCH already in profile"
@@ -532,7 +532,7 @@ echo "  ✓ Node.js $(node --version 2>/dev/null || echo 'N/A')"
 echo "  ✓ npm $(npm --version 2>/dev/null || echo 'N/A')"
 echo "  ✓ Claude Code"
 echo "  ✓ Status line enabled"
-echo "  ✓ Tool Search enabled (ENABLE_TOOL_SEARCH=auto)"
+echo "  ✓ Tool Search enabled (ENABLE_TOOL_SEARCH=true)"
 
 # Show skills summary if installed
 if [ "$INSTALL_SUCCESS" = true ] && [ -d "$CLAUDE_DIR/skills" ]; then

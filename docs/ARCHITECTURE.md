@@ -113,7 +113,7 @@ Each MCP exposes tools. Each tool has a schema (description, parameters, return 
 
 ### Tool Search: The Solution
 
-Tool Search (`ENABLE_TOOL_SEARCH=auto`) changes how MCP tools load:
+Tool Search (`ENABLE_TOOL_SEARCH=true`) changes how MCP tools load:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -162,15 +162,15 @@ Tool Search (`ENABLE_TOOL_SEARCH=auto`) changes how MCP tools load:
 
 ```bash
 # In your shell profile (~/.bashrc or ~/.zshrc)
-export ENABLE_TOOL_SEARCH=auto
+export ENABLE_TOOL_SEARCH=true
 
 # Or per-session
-ENABLE_TOOL_SEARCH=auto claude
+ENABLE_TOOL_SEARCH=true claude
 ```
 
 **Auto mode:** Activates when MCP tools would exceed 10% of context
 **Always on:** `ENABLE_TOOL_SEARCH=true`
-**Custom threshold:** `ENABLE_TOOL_SEARCH=auto:5` (5% threshold)
+**Custom threshold:** `ENABLE_TOOL_SEARCH=true:5` (5% threshold)
 
 ### Tool Search Requirements
 
@@ -313,7 +313,7 @@ my-plugin/
 │  GLOBAL (User Scope)                                            │
 │  ───────────────────                                            │
 │  • Memory MCP only (persistence is its purpose)                 │
-│  • ENABLE_TOOL_SEARCH=auto in shell profile                     │
+│  • ENABLE_TOOL_SEARCH=true in shell profile                     │
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
@@ -464,7 +464,7 @@ claude plugin install @my-marketplace/react-dev
 
 1. **Enable Tool Search globally**
    ```bash
-   export ENABLE_TOOL_SEARCH=auto
+   export ENABLE_TOOL_SEARCH=true
    ```
 
 2. **Only memory MCP should be global**

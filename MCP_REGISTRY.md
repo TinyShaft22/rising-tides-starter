@@ -15,7 +15,7 @@
 | **Global (User)** | Only `memory` — persistence is its purpose |
 | **Project** | Everything else — load only when needed |
 
-Enable Tool Search for additional optimization: `export ENABLE_TOOL_SEARCH=auto`
+Enable Tool Search for additional optimization: `export ENABLE_TOOL_SEARCH=true`
 
 ---
 
@@ -308,7 +308,7 @@ Located at: `~/.claude/skills/_mcp-wrappers/`
 
 ```bash
 # Add to ~/.bashrc or ~/.zshrc
-export ENABLE_TOOL_SEARCH=auto
+export ENABLE_TOOL_SEARCH=true
 ```
 
 With Tool Search:
@@ -369,7 +369,7 @@ With Tool Search:
 
 ### Context Usage Too High
 
-1. Enable Tool Search: `export ENABLE_TOOL_SEARCH=auto`
+1. Enable Tool Search: `export ENABLE_TOOL_SEARCH=true`
 2. Move MCPs from global to project-level
 3. Remove unused MCPs from configs
 

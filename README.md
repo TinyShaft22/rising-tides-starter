@@ -389,7 +389,7 @@ ls ~/.claude/skills | wc -l  # Should be 170+
 cat ~/.claude/SKILLS_INDEX.json | head
 
 # Check Tool Search enabled
-echo $ENABLE_TOOL_SEARCH  # Should be "auto"
+echo $ENABLE_TOOL_SEARCH  # Should be "true"
 ```
 
 ---
@@ -419,7 +419,7 @@ cat ~/.claude/SKILLS_INDEX.json | head
 
 ```bash
 claude mcp list
-export ENABLE_TOOL_SEARCH=auto
+export ENABLE_TOOL_SEARCH=true
 ```
 
 ---

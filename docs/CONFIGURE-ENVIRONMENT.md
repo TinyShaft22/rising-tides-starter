@@ -56,13 +56,13 @@ With Tool Search: Schemas load on-demand (~500 tokens per tool when used)
 
 **Mac/Linux (add to ~/.zshrc or ~/.bashrc):**
 ```bash
-echo 'export ENABLE_TOOL_SEARCH=auto' >> ~/.zshrc
+echo 'export ENABLE_TOOL_SEARCH=true' >> ~/.zshrc
 source ~/.zshrc
 ```
 
 **Windows (PowerShell):**
 ```powershell
-Add-Content $PROFILE '$env:ENABLE_TOOL_SEARCH = "auto"'
+Add-Content $PROFILE '$env:ENABLE_TOOL_SEARCH = "true"'
 ```
 
 Then restart your terminal.
@@ -238,13 +238,13 @@ Some features require environment variables.
 **Mac/Linux (add to ~/.bashrc or ~/.zshrc):**
 ```bash
 export GITHUB_TOKEN="your-token-here"
-export ENABLE_TOOL_SEARCH=auto
+export ENABLE_TOOL_SEARCH=true
 ```
 
 **Windows (PowerShell):**
 ```powershell
 [Environment]::SetEnvironmentVariable("GITHUB_TOKEN", "your-token-here", "User")
-$env:ENABLE_TOOL_SEARCH = "auto"
+$env:ENABLE_TOOL_SEARCH = "true"
 ```
 
 ### Common Environment Variables
@@ -319,7 +319,7 @@ claude
 
 ### Tool Search not working
 
-1. Check `echo $ENABLE_TOOL_SEARCH` outputs `auto`
+1. Check `echo $ENABLE_TOOL_SEARCH` outputs `true`
 2. Restart terminal after adding to profile
 3. On Windows, check PowerShell profile loaded
 

@@ -72,7 +72,7 @@ Skills in plugins load in tiers:
 MCPs bundled in plugins defer loading via Tool Search:
 - MCP tools don't load until actually needed
 - Near-zero context cost at startup
-- Enable with: `export ENABLE_TOOL_SEARCH=auto`
+- Enable with: `export ENABLE_TOOL_SEARCH=true`
 
 ---
 
@@ -163,7 +163,7 @@ claude --plugin-dir ./plugins/react-dev-plugin \
 
 Tool Search defers MCP loading until needed:
 ```bash
-export ENABLE_TOOL_SEARCH=auto
+export ENABLE_TOOL_SEARCH=true
 ```
 
 Add to your shell profile for persistence.

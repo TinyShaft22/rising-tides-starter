@@ -73,7 +73,7 @@ Watch for these key checkpoints:
 | Git install | Installs or skips if present |
 | Claude Code install | Native installer (`curl` or `irm`) |
 | Settings creation | Creates `~/.claude/settings.json` |
-| Tool Search | Adds `ENABLE_TOOL_SEARCH=auto` to shell profile |
+| Tool Search | Adds `ENABLE_TOOL_SEARCH=true` to shell profile |
 | Skills copy | Reports "Copied X skills" |
 | Plugins copy | Reports "Copied X plugins" |
 | Memory MCP prompt | Asks "Set up Memory MCP? (y/N)" |
@@ -307,7 +307,7 @@ POST-INSTALL CHECKS:
 - [ ] ~/.claude/plugins/ has 12 folders
 - [ ] SKILLS_INDEX.json valid
 - [ ] settings.json has statusLine: true
-- [ ] ENABLE_TOOL_SEARCH=auto set
+- [ ] ENABLE_TOOL_SEARCH=true set
 
 FUNCTIONAL TESTS:
 - [ ] claude auth login works

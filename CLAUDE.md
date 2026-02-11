@@ -19,7 +19,7 @@ The Rising Tides system uses **progressive disclosure**:
 - Plugins are installed to `~/.claude/plugins/`
 - `SKILLS_INDEX.json` enables fast discovery without loading all skills
 - MCPs are configured **per-project** (not global, except Memory)
-- `ENABLE_TOOL_SEARCH=auto` defers MCP schema loading
+- `ENABLE_TOOL_SEARCH=true` defers MCP schema loading
 
 ## Key Paths
 
@@ -121,12 +121,12 @@ claude auth login
 
 **Mac/Linux (.zshrc or .bashrc):**
 ```bash
-echo 'export ENABLE_TOOL_SEARCH=auto' >> ~/.zshrc
+echo 'export ENABLE_TOOL_SEARCH=true' >> ~/.zshrc
 ```
 
 **Windows (PowerShell profile):**
 ```powershell
-Add-Content $PROFILE '$env:ENABLE_TOOL_SEARCH = "auto"'
+Add-Content $PROFILE '$env:ENABLE_TOOL_SEARCH = "true"'
 ```
 
 ### Configure Memory MCP
@@ -196,7 +196,7 @@ If a user has issues, have them run the verification script:
 
 ### MCPs not working
 → Check configuration with `claude mcp list`
-→ Ensure ENABLE_TOOL_SEARCH=auto is set
+→ Ensure ENABLE_TOOL_SEARCH=true is set
 → Check project .mcp.json for project-level MCPs
 
 ## Verification Checklist
@@ -211,7 +211,7 @@ After setup, verify with the user:
 - [ ] Status line appears in Claude Code
 - [ ] `ls ~/.claude/skills | wc -l` returns 170+
 - [ ] `cat ~/.claude/SKILLS_INDEX.json | head` shows valid JSON
-- [ ] `echo $ENABLE_TOOL_SEARCH` returns "auto"
+- [ ] `echo $ENABLE_TOOL_SEARCH` returns "true"
 - [ ] `claude mcp list` shows memory (if configured)
 
 ## Response Style

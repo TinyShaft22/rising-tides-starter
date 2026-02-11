@@ -143,10 +143,10 @@ fi
 # Check Tool Search
 # -------------------------------------------
 
-if [ "$ENABLE_TOOL_SEARCH" = "auto" ]; then
-    check_pass "Tool Search enabled (ENABLE_TOOL_SEARCH=auto)"
+if [ "$ENABLE_TOOL_SEARCH" = "true" ]; then
+    check_pass "Tool Search enabled (ENABLE_TOOL_SEARCH=true)"
 else
-    check_warn "Tool Search not enabled" "Add 'export ENABLE_TOOL_SEARCH=auto' to your shell profile"
+    check_warn "Tool Search not enabled" "Add 'export ENABLE_TOOL_SEARCH=true' to your shell profile"
 fi
 
 # -------------------------------------------

@@ -140,7 +140,7 @@ claude mcp list
 
 ### What Is Tool Search?
 
-Tool Search (`ENABLE_TOOL_SEARCH=auto`) defers MCP tool loading:
+Tool Search (`ENABLE_TOOL_SEARCH=true`) defers MCP tool loading:
 
 - **Without Tool Search:** All MCP tools load at session start
 - **With Tool Search:** Tools load on-demand when needed
@@ -151,16 +151,16 @@ This dramatically reduces context usage when you have many MCPs configured.
 
 **Per-session:**
 ```bash
-ENABLE_TOOL_SEARCH=auto claude
+ENABLE_TOOL_SEARCH=true claude
 ```
 
 **In your shell profile (recommended):**
 ```bash
 # Add to ~/.bashrc or ~/.zshrc
-export ENABLE_TOOL_SEARCH=auto
+export ENABLE_TOOL_SEARCH=true
 
 # Or create an alias
-alias claude='ENABLE_TOOL_SEARCH=auto claude'
+alias claude='ENABLE_TOOL_SEARCH=true claude'
 ```
 
 **Verify it's working:**
@@ -324,7 +324,7 @@ npx -y @upstash/context7-mcp
 
 ### High Context Usage
 
-1. **Enable Tool Search:** `ENABLE_TOOL_SEARCH=auto`
+1. **Enable Tool Search:** `ENABLE_TOOL_SEARCH=true`
 2. **Move MCPs to project level:** Remove from global config
 3. **Remove unused MCPs:** If not needed for this project, remove from `.mcp.json`
 
@@ -379,7 +379,7 @@ claude mcp remove [mcp-name] --scope project
    - All other MCPs as needed
 
 3. **Tool Search enabled:**
-   - `export ENABLE_TOOL_SEARCH=auto` in shell profile
+   - `export ENABLE_TOOL_SEARCH=true` in shell profile
 
 4. **Result:**
    - Minimal context overhead

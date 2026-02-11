@@ -107,7 +107,7 @@ For optimal context efficiency with MCPs:
 
 ```bash
 # Add to your shell profile (.bashrc, .zshrc, etc.)
-export ENABLE_TOOL_SEARCH=auto
+export ENABLE_TOOL_SEARCH=true
 ```
 
 This defers MCP schema loading until tools are actually used:
@@ -257,6 +257,6 @@ See `MCP_REGISTRY.md` for all available MCP configurations.
 | 2. Verify | `ls ~/.claude/skills/ && ls ~/.claude/plugins/` |
 | 3. Try it | `/recommend skills` |
 | 4. Memory (opt) | `claude mcp add memory --scope user` |
-| 5. Tool Search (opt) | `export ENABLE_TOOL_SEARCH=auto` (add to shell profile) |
+| 5. Tool Search (opt) | `export ENABLE_TOOL_SEARCH=true` (add to shell profile) |
 | 6. Use plugins | Via `/recommend skills` (auto-configures .mcp.json) |
 | 7. Status line (opt) | `./scripts/setup-statusline.sh` |
