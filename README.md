@@ -5,16 +5,48 @@
 **From zero to a fully-configured Claude Code environment in one command.**
 
 [![Security Audit](https://img.shields.io/badge/Security%20Audit-PASSED-brightgreen?style=for-the-badge&logo=shield)](SECURITY.md)
-[![Skills](https://img.shields.io/badge/Skills-170-blue?style=for-the-badge)](skills/)
-[![Plugins](https://img.shields.io/badge/Plugins-37-purple?style=for-the-badge)](plugins/)
-[![MCPs](https://img.shields.io/badge/MCPs-17-orange?style=for-the-badge)](MCP_REGISTRY.md)
+[![Skills](https://img.shields.io/badge/Skills-187-blue?style=for-the-badge)](skills/)
+[![Plugins](https://img.shields.io/badge/Plugins-38-purple?style=for-the-badge)](plugins/)
+[![MCPs](https://img.shields.io/badge/MCPs-18-orange?style=for-the-badge)](MCP_REGISTRY.md)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 *A curated, security-audited collection of Claude Code skills from the open-source community.*
 
-[Quick Start](#one-command-setup) | [Security](#security-audit) | [Attribution](#attribution--credits) | [Community](https://www.skool.com/rising-tides-9034)
+[Quick Start](#one-command-setup) | [What It Does](#what-the-installer-does) | [Security](#security-audit) | [Attribution](#attribution--credits) | [Community](https://www.skool.com/rising-tides-9034)
 
 </div>
+
+---
+
+## What the Installer Does
+
+The setup script is **non-destructive** — it only adds what's missing.
+
+### Smart Skip Logic
+
+| Component | If Already Installed | If Missing |
+|-----------|---------------------|------------|
+| **Claude Code** | ✅ Skip, just update to latest | Install |
+| **Node.js 18+** | ✅ Skip | Install Node 20 |
+| **Git** | ✅ Skip | Install |
+| **Python 3** | ✅ Skip | Install |
+| **Homebrew** (Mac) | ✅ Skip | Install |
+| **Build tools** | ✅ Skip | Install |
+| **Your settings** | ✅ Preserve existing | Create defaults |
+
+### What Gets Installed
+
+The script installs:
+1. **Prerequisites** — Only what's missing (Node.js, Git, etc.)
+2. **Claude Code** — Skipped if you already have it
+3. **Rising Tides Skills Pack** — 187 skills + 38 plugins to `~/.claude/`
+4. **Tool Search** — Adds `ENABLE_TOOL_SEARCH=true` to your shell profile
+
+**It does NOT:**
+- Overwrite your existing Claude settings
+- Remove or modify your projects
+- Change system configurations beyond adding tools to PATH
+- Install anything you already have
 
 ---
 
@@ -26,10 +58,10 @@ The Rising Tides system uses **progressive disclosure** — you don't load all s
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                         RISING TIDES PACK                               │
 ├─────────────────────────────────────────────────────────────────────────┤
-│   170 Skills    │  Marketing, Frontend, Backend, Security, DevOps      │
-│    37 Plugins   │  Bundled skill + MCP packages                        │
+│   187 Skills    │  Marketing, Frontend, Backend, Security, DevOps      │
+│    38 Plugins   │  Bundled skill + MCP packages                        │
 │     9 CLIs      │  gh, stripe, vercel, firebase, supabase...           │
-│    17 MCPs      │  context7, playwright, github, remotion...           │
+│    18 MCPs      │  context7, playwright, github, n8n, remotion...      │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -66,8 +98,8 @@ flowchart TB
     end
 
     subgraph Global["~/.claude/ (Global Library)"]
-        Skills["skills/<br/>170 folders"]
-        Plugins["plugins/<br/>37 bundles"]
+        Skills["skills/<br/>187 folders"]
+        Plugins["plugins/<br/>38 bundles"]
         Registry["MCP_REGISTRY.md"]
     end
 
@@ -92,7 +124,7 @@ flowchart TB
 | Full SKILL.md content | 500-2000 per skill | On invoke only |
 | MCP tool schemas | ~500 per tool | On-demand (with Tool Search) |
 
-**You're paying ~6% context for all 170 skills.** Full content loads only when you actually invoke a skill.
+**You're paying ~6% context for all 187 skills.** Full content loads only when you actually invoke a skill.
 
 ---
 
@@ -200,7 +232,7 @@ flowchart LR
 
 | Category | Count | Status |
 |----------|-------|--------|
-| Skill directories | 170 | ✅ Passed |
+| Skill directories | 187 | ✅ Passed |
 | Plugin directories | 37 | ✅ Passed |
 | Shell scripts | 4 | ✅ Fixed |
 | Python scripts | 76 | ✅ Reviewed |
@@ -289,6 +321,7 @@ We believe in giving credit where it's due. This pack wouldn't exist without the
 | **[Anton Babenko](https://github.com/antonbabenko/terraform-skill)** | 1 | Terraform IaC | Apache-2.0 |
 | **[obra/superpowers](https://github.com/obra/superpowers)** | 1 | Debugging methodology | MIT |
 | **[lackeyjb](https://github.com/lackeyjb/playwright-skill)** | 1 | Playwright testing | MIT |
+| **[Romuald Czlonkowski](https://github.com/czlonkowski/n8n-skills)** | 7 | n8n workflow automation | MIT |
 | **Anthropic** | 13 | Built-in Claude Code skills | Apache-2.0 |
 
 ### MCP Server Sources
@@ -303,14 +336,15 @@ We believe in giving credit where it's due. This pack wouldn't exist without the
 | shadcn | shadcn | [shadcn/ui](https://github.com/shadcn/ui) |
 | docker | ckreiling | [ckreiling/mcp-server-docker](https://github.com/ckreiling/mcp-server-docker) |
 | github-actions | ko1ynnky | [ko1ynnky/github-actions-mcp-server](https://github.com/ko1ynnky/github-actions-mcp-server) |
+| n8n | Romuald Czlonkowski | [czlonkowski/n8n-mcp](https://github.com/czlonkowski/n8n-mcp) |
 
 ### Our Contribution
 
 **What we did:**
-- Curated 170 skills from 15+ sources
+- Curated 187 skills from 16+ sources
 - Performed security audits on all code
 - Created unified SKILLS_INDEX.json for efficient discovery
-- Built 37 plugins bundling skills with MCPs
+- Built 38 plugins bundling skills with MCPs
 - Wrote one-command installers for all platforms
 - Documented everything
 
@@ -332,10 +366,10 @@ We believe in giving credit where it's due. This pack wouldn't exist without the
 │   │   └── SKILL.md
 │   ├── security-audit/
 │   │   └── SKILL.md
-│   └── ... (170 folders)
+│   └── ... (187 folders)
 ├── plugins/                        # Plugin bundles
 │   ├── react-dev-plugin/
-│   └── ... (37 folders)
+│   └── ... (38 folders)
 ├── SKILLS_INDEX.json               # Master skill catalog
 ├── MCP_REGISTRY.md                 # MCP configurations
 ├── ATTRIBUTION.md                  # Credit to original authors
@@ -383,7 +417,7 @@ node --version       # Should be 18+
 claude --version     # Should return version
 
 # Check skills installed
-ls ~/.claude/skills | wc -l  # Should be 170+
+ls ~/.claude/skills | wc -l  # Should be 187+
 
 # Check index file
 cat ~/.claude/SKILLS_INDEX.json | head
@@ -411,7 +445,7 @@ Close and reopen your terminal, then try again.
 ### Skills not loading
 
 ```bash
-ls ~/.claude/skills | wc -l  # Should be 170+
+ls ~/.claude/skills | wc -l  # Should be 187+
 cat ~/.claude/SKILLS_INDEX.json | head
 ```
 

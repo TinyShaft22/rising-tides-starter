@@ -1,0 +1,8 @@
+{
+  "name": "n8n-plugin",
+  "description": "Workflow automation with n8n MCP. Build, validate, and manage automation workflows with 1,084+ nodes and 2,700+ templates.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Nick Mohler (integration), Romuald Czlonkowski (n8n-mcp)"
+  }
+}

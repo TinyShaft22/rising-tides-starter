@@ -386,6 +386,26 @@ GitHub Actions MCP server.
 
 ---
 
+### Romuald Czlonkowski (AI Advisors)
+n8n workflow automation skills and MCP server.
+
+| Skill | Description |
+|-------|-------------|
+| n8n-expression-syntax | n8n expression syntax and variables |
+| n8n-mcp-tools-expert | n8n MCP tools usage guide |
+| n8n-workflow-patterns | Workflow architectural patterns |
+| n8n-validation-expert | Validation error interpretation |
+| n8n-node-configuration | Node configuration guidance |
+| n8n-code-javascript | JavaScript in Code nodes |
+| n8n-code-python | Python in Code nodes |
+
+**Source:** [github.com/czlonkowski/n8n-skills](https://github.com/czlonkowski/n8n-skills)
+**MCP:** [github.com/czlonkowski/n8n-mcp](https://github.com/czlonkowski/n8n-mcp)
+**License:** MIT
+**Website:** [aiadvisors.pl/en](https://www.aiadvisors.pl/en)
+
+---
+
 ## Security Note
 
 All skills have been reviewed for safety. Original sources are linked above for verification and updates.
@@ -426,9 +446,10 @@ If you create a useful skill:
 | Ahmed Asmar | 6 | DevOps, SRE |
 | Jeff Allan | 60 | Language and framework expertise |
 | lackeyjb | 1 | Playwright testing |
+| Romuald Czlonkowski | 7 | n8n workflow automation |
 | ckreiling | — | Docker MCP server |
 | ko1ynnky | — | GitHub Actions MCP server |
-| **Total** | **~208** | |
+| **Total** | **~215** | |
 
 ---
 
@@ -451,6 +472,7 @@ All curated skills use permissive open-source licenses that allow commercial use
 | **Ahmed Asmar** | MIT | ✅ Yes |
 | **Jeff Allan** | MIT | ✅ Yes |
 | **lackeyjb** | MIT | ✅ Yes |
+| **Romuald Czlonkowski** | MIT | ✅ Yes |
 | **ckreiling** | MIT | ✅ Yes |
 | **ko1ynnky** | MIT | ✅ Yes |
 | **Nick Mohler** | MIT | ✅ Yes |

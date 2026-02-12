@@ -27,8 +27,8 @@ The Rising Tides system uses **progressive disclosure**:
 
 ```
 ~/.claude/
-├── skills/              # All 170 skills
-├── plugins/             # All 37 plugins
+├── skills/              # All 187 skills
+├── plugins/             # All 38 plugins
 ├── SKILLS_INDEX.json    # Discovery index
 ├── MCP_REGISTRY.md      # MCP configurations
 ├── ATTRIBUTION.md       # Skill sources
@@ -164,6 +164,7 @@ When user runs `/recommend skills` and confirms plugin imports:
 | playwright | `@playwright/mcp` |
 | github | `@anthropic-ai/mcp-server-github` |
 | remotion | `@anthropic-ai/mcp-server-remotion` |
+| n8n | `n8n-mcp` |
 
 ## Troubleshooting Scripts
 
@@ -209,7 +210,7 @@ After setup, verify with the user:
 - [ ] `claude --version` returns a version
 - [ ] `claude auth status` shows authenticated
 - [ ] Status line appears in Claude Code
-- [ ] `ls ~/.claude/skills | wc -l` returns 170+
+- [ ] `ls ~/.claude/skills | wc -l` returns 187+
 - [ ] `cat ~/.claude/SKILLS_INDEX.json | head` shows valid JSON
 - [ ] `echo $ENABLE_TOOL_SEARCH` returns "true"
 - [ ] `claude mcp list` shows memory (if configured)

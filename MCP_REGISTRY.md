@@ -36,7 +36,7 @@ Enable Tool Search for additional optimization: `export ENABLE_TOOL_SEARCH=true`
 
 | MCP | Purpose | Recommended Scope | Skills That Use It |
 |-----|---------|-------------------|-------------------|
-| **n8n-mcp** | Workflow automation | Project | (workflow skills) |
+| **n8n** | Workflow automation (1,084+ nodes) | Project | n8n-mcp-tools-expert, n8n-workflow-patterns, +5 more |
 | **stripe-mcp** | Payment operations | Project | (payment skills) |
 | **pandadoc-mcp** | Proposal generation | Project | proposal-generator |
 
@@ -230,9 +230,22 @@ claude mcp add remotion --scope project
 
 ---
 
-### n8n MCP (Tier 2)
+### n8n MCP
 
-**Scope:** Project
+**Scope:** Project — only needed for workflow automation projects
+
+**Purpose:** Workflow automation with 1,084+ nodes, 2,700+ templates, validation, and management.
+
+**CLI Setup:**
+```bash
+claude mcp add n8n-mcp \
+  -e MCP_MODE=stdio \
+  -e LOG_LEVEL=error \
+  -e DISABLE_CONSOLE_OUTPUT=true \
+  -e N8N_API_URL=https://your-instance.app.n8n.cloud \
+  -e N8N_API_KEY=your-api-key \
+  -- npx n8n-mcp
+```
 
 **Project `.mcp.json`:**
 ```json
@@ -240,11 +253,37 @@ claude mcp add remotion --scope project
   "mcpServers": {
     "n8n": {
       "command": "npx",
-      "args": ["-y", "n8n-mcp"]
+      "args": ["n8n-mcp"],
+      "env": {
+        "MCP_MODE": "stdio",
+        "LOG_LEVEL": "error",
+        "DISABLE_CONSOLE_OUTPUT": "true",
+        "N8N_API_URL": "${N8N_API_URL}",
+        "N8N_API_KEY": "${N8N_API_KEY}"
+      }
     }
   }
 }
 ```
+
+**Environment Variables:**
+- `N8N_API_URL` — Your n8n instance URL (e.g., `https://your-instance.app.n8n.cloud`)
+- `N8N_API_KEY` — API key from n8n Settings > API
+
+**Key Tools:**
+- `search_nodes` — Find nodes by keyword from 1,084+ available
+- `get_node` — Get node documentation and properties
+- `validate_node` — Validate node configuration
+- `n8n_create_workflow` — Create new workflow
+- `n8n_update_partial_workflow` — Edit existing workflow
+- `validate_workflow` — Validate complete workflow
+- `search_templates` — Search 2,700+ workflow templates
+
+**Verify:** Ask Claude to search for n8n nodes or create a workflow
+
+**Skills that use it:** n8n-mcp-tools-expert, n8n-workflow-patterns, n8n-expression-syntax, n8n-validation-expert, n8n-node-configuration, n8n-code-javascript, n8n-code-python
+
+**Source:** [github.com/czlonkowski/n8n-mcp](https://github.com/czlonkowski/n8n-mcp)
 
 ---
 
@@ -280,6 +319,13 @@ claude mcp add remotion --scope project
 | **webapp-testing** | playwright | Browser automation |
 | **commit-work** | github | PR and issue management |
 | **video-generator** | remotion | Video creation |
+| **n8n-mcp-tools-expert** | n8n | Node search, validation, workflow management |
+| **n8n-workflow-patterns** | n8n | Workflow architecture patterns |
+| **n8n-expression-syntax** | n8n | Expression validation |
+| **n8n-validation-expert** | n8n | Workflow validation |
+| **n8n-node-configuration** | n8n | Node configuration |
+| **n8n-code-javascript** | n8n | Code node JavaScript |
+| **n8n-code-python** | n8n | Code node Python |
 
 ### Skills That Reference MCPs But Don't Require Them
 
