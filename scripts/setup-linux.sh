@@ -480,6 +480,24 @@ if [ -d "$STARTER_PACK_DIR/skills" ] && [ -d "$STARTER_PACK_DIR/plugins" ]; then
         print_success "Copied ATTRIBUTION.md"
     fi
 
+    if [ -f "$STARTER_PACK_DIR/VERSION" ]; then
+        cp "$STARTER_PACK_DIR/VERSION" "$CLAUDE_DIR/"
+        print_success "Copied VERSION"
+    fi
+
+    if [ -f "$STARTER_PACK_DIR/CHANGELOG.md" ]; then
+        cp "$STARTER_PACK_DIR/CHANGELOG.md" "$CLAUDE_DIR/"
+        print_success "Copied CHANGELOG.md"
+    fi
+
+    # Install update-rising-tides command
+    if [ -f "$STARTER_PACK_DIR/scripts/update-linux.sh" ]; then
+        mkdir -p "$HOME/.local/bin"
+        cp "$STARTER_PACK_DIR/scripts/update-linux.sh" "$HOME/.local/bin/update-rising-tides"
+        chmod +x "$HOME/.local/bin/update-rising-tides"
+        print_success "Installed 'update-rising-tides' command"
+    fi
+
     INSTALL_SUCCESS=true
 else
     # Remote install - download from GitHub
@@ -538,6 +556,16 @@ else
         [ -f "$TEMP_DIR/SKILLS_INDEX.json" ] && cp "$TEMP_DIR/SKILLS_INDEX.json" "$CLAUDE_DIR/"
         [ -f "$TEMP_DIR/MCP_REGISTRY.md" ] && cp "$TEMP_DIR/MCP_REGISTRY.md" "$CLAUDE_DIR/"
         [ -f "$TEMP_DIR/ATTRIBUTION.md" ] && cp "$TEMP_DIR/ATTRIBUTION.md" "$CLAUDE_DIR/"
+        [ -f "$TEMP_DIR/VERSION" ] && cp "$TEMP_DIR/VERSION" "$CLAUDE_DIR/"
+        [ -f "$TEMP_DIR/CHANGELOG.md" ] && cp "$TEMP_DIR/CHANGELOG.md" "$CLAUDE_DIR/"
+
+        # Install update-rising-tides command
+        if [ -f "$TEMP_DIR/scripts/update-linux.sh" ]; then
+            mkdir -p "$HOME/.local/bin"
+            cp "$TEMP_DIR/scripts/update-linux.sh" "$HOME/.local/bin/update-rising-tides"
+            chmod +x "$HOME/.local/bin/update-rising-tides"
+            print_success "Installed 'update-rising-tides' command"
+        fi
 
         rm -rf "$TEMP_DIR"
         INSTALL_SUCCESS=true

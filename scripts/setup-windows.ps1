@@ -424,6 +424,34 @@ if ((Test-Path $localSkillsDir) -and (Test-Path $localPluginsDir)) {
         Print-Success "Copied ATTRIBUTION.md"
     }
 
+    $versionFile = Join-Path $StarterPackDir "VERSION"
+    if (Test-Path $versionFile) {
+        Copy-Item $versionFile "$claudeDir\" -Force
+        Print-Success "Copied VERSION"
+    }
+
+    $changelogFile = Join-Path $StarterPackDir "CHANGELOG.md"
+    if (Test-Path $changelogFile) {
+        Copy-Item $changelogFile "$claudeDir\" -Force
+        Print-Success "Copied CHANGELOG.md"
+    }
+
+    # Install update-rising-tides command
+    $updateScript = Join-Path $StarterPackDir "scripts\update-windows.ps1"
+    $localBinDir = "$env:USERPROFILE\.local\bin"
+    if (-not (Test-Path $localBinDir)) {
+        New-Item -ItemType Directory -Path $localBinDir -Force | Out-Null
+    }
+    if (Test-Path $updateScript) {
+        $wrapperContent = @"
+@echo off
+powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\.local\bin\update-rising-tides.ps1" %*
+"@
+        $wrapperContent | Set-Content "$localBinDir\update-rising-tides.cmd" -Encoding ASCII
+        Copy-Item $updateScript "$localBinDir\update-rising-tides.ps1" -Force
+        Print-Success "Installed 'update-rising-tides' command"
+    }
+
     $INSTALL_SUCCESS = $true
 } else {
     # Remote install - download from GitHub
@@ -497,6 +525,27 @@ if ((Test-Path $localSkillsDir) -and (Test-Path $localPluginsDir)) {
             if (Test-Path $tempRegistry) { Copy-Item $tempRegistry "$claudeDir\" -Force }
             $tempAttribution = Join-Path $tempDir "ATTRIBUTION.md"
             if (Test-Path $tempAttribution) { Copy-Item $tempAttribution "$claudeDir\" -Force }
+            $tempVersion = Join-Path $tempDir "VERSION"
+            if (Test-Path $tempVersion) { Copy-Item $tempVersion "$claudeDir\" -Force }
+            $tempChangelog = Join-Path $tempDir "CHANGELOG.md"
+            if (Test-Path $tempChangelog) { Copy-Item $tempChangelog "$claudeDir\" -Force }
+
+            # Install update-rising-tides command
+            $updateScript = Join-Path $tempDir "scripts\update-windows.ps1"
+            $localBinDir = "$env:USERPROFILE\.local\bin"
+            if (-not (Test-Path $localBinDir)) {
+                New-Item -ItemType Directory -Path $localBinDir -Force | Out-Null
+            }
+            if (Test-Path $updateScript) {
+                # Create a batch wrapper for easy command-line use
+                $wrapperContent = @"
+@echo off
+powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\.local\bin\update-rising-tides.ps1" %*
+"@
+                $wrapperContent | Set-Content "$localBinDir\update-rising-tides.cmd" -Encoding ASCII
+                Copy-Item $updateScript "$localBinDir\update-rising-tides.ps1" -Force
+                Print-Success "Installed 'update-rising-tides' command"
+            }
 
             Remove-Item $tempDir -Recurse -Force -ErrorAction SilentlyContinue
             $INSTALL_SUCCESS = $true
