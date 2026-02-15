@@ -77,6 +77,93 @@ PKG_MANAGER=$(detect_package_manager)
 echo "Detected package manager: $PKG_MANAGER"
 
 # -------------------------------------------
+# License Validation
+# -------------------------------------------
+
+SUPABASE_URL="https://qvnfbdcgjylonlebopey.supabase.co"
+SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2bmZiZGNnanlsb25sZWJvcGV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzExODE4MDgsImV4cCI6MjA4Njc1NzgwOH0.HUQ_F58lUAHbeYMdZhre_ntCf2k-XR09u4QXj7bHrAo"
+LICENSE_DIR="$HOME/.rising-tides"
+LICENSE_FILE="$LICENSE_DIR/license.key"
+
+echo ""
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${BLUE}   LICENSE VALIDATION                    ${NC}"
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo ""
+
+# Check for stored license first
+if [ -f "$LICENSE_FILE" ]; then
+    STORED_KEY=$(cat "$LICENSE_FILE" 2>/dev/null | tr -d '\n\r')
+    if [ -n "$STORED_KEY" ]; then
+        echo -e "${YELLOW}Found stored license key...${NC}"
+        LICENSE_KEY="$STORED_KEY"
+    fi
+fi
+
+# If no stored key, prompt for one
+if [ -z "$LICENSE_KEY" ]; then
+    echo "Enter your license key from your purchase confirmation email."
+    echo ""
+    read -p "License key (RT-XXXX-XXXX-XXXX-XXXX): " LICENSE_KEY
+fi
+
+# Validate format
+if [[ ! $LICENSE_KEY =~ ^RT-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$ ]]; then
+    echo ""
+    echo -e "${RED}✗ Invalid license key format.${NC}"
+    echo "  Keys look like: RT-XXXX-XXXX-XXXX-XXXX"
+    echo ""
+    echo "  Check your purchase confirmation email or contact:"
+    echo "  nick@sunsetsystems.co"
+    exit 1
+fi
+
+# Validate against Supabase
+echo ""
+echo "Validating license..."
+RESPONSE=$(curl -s "$SUPABASE_URL/rest/v1/rpc/validate_license" \
+    -H "apikey: $SUPABASE_ANON_KEY" \
+    -H "Content-Type: application/json" \
+    -d "{\"key\": \"$LICENSE_KEY\"}" 2>/dev/null)
+
+# Check if curl succeeded
+if [ -z "$RESPONSE" ]; then
+    echo -e "${RED}✗ Could not connect to license server.${NC}"
+    echo "  Check your internet connection and try again."
+    exit 1
+fi
+
+# Parse response
+VALID=$(echo "$RESPONSE" | grep -o '"valid"\s*:\s*true' || true)
+
+if [ -z "$VALID" ]; then
+    ERROR=$(echo "$RESPONSE" | grep -o '"error"\s*:\s*"[^"]*"' | sed 's/"error"\s*:\s*"//' | sed 's/"$//' || echo "Unknown error")
+    echo ""
+    echo -e "${RED}✗ License validation failed: $ERROR${NC}"
+    echo ""
+    echo "  If you believe this is an error, contact:"
+    echo "  nick@sunsetsystems.co"
+    exit 1
+fi
+
+# Extract tier and activation info
+TIER=$(echo "$RESPONSE" | grep -o '"tier"\s*:\s*"[^"]*"' | sed 's/"tier"\s*:\s*"//' | sed 's/"$//' || echo "unknown")
+ACTIVATIONS=$(echo "$RESPONSE" | grep -o '"activations"\s*:\s*[0-9]*' | sed 's/"activations"\s*:\s*//' || echo "?")
+MAX_ACTIVATIONS=$(echo "$RESPONSE" | grep -o '"max_activations"\s*:\s*[0-9]*' | sed 's/"max_activations"\s*:\s*//' || echo "?")
+
+echo ""
+echo -e "${GREEN}✓ License valid!${NC}"
+echo "  Tier: $TIER"
+echo "  Activations: $ACTIVATIONS / $MAX_ACTIVATIONS"
+
+# Store license key for future use
+mkdir -p "$LICENSE_DIR"
+echo "$LICENSE_KEY" > "$LICENSE_FILE"
+chmod 600 "$LICENSE_FILE"
+echo -e "${GREEN}✓ License key saved for future updates${NC}"
+echo ""
+
+# -------------------------------------------
 # Step 1: Update package manager
 # -------------------------------------------
 

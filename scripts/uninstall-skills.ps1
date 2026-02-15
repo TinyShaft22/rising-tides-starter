@@ -151,15 +151,15 @@ Write-Host "Still installed:" -ForegroundColor Cyan
 # Check what's still installed
 $claudePath = $null
 try { $claudePath = (Get-Command claude -ErrorAction SilentlyContinue).Source } catch {}
-Write-Host "  - Claude Code CLI: $($claudePath ?? 'not in PATH')"
+if ($claudePath) { Write-Host "  - Claude Code CLI: $claudePath" } else { Write-Host "  - Claude Code CLI: not in PATH" }
 
 $nodeVersion = $null
 try { $nodeVersion = (node --version 2>$null) } catch {}
-Write-Host "  - Node.js: $($nodeVersion ?? 'not installed')"
+if ($nodeVersion) { Write-Host "  - Node.js: $nodeVersion" } else { Write-Host "  - Node.js: not installed" }
 
 $gitVersion = $null
 try { $gitVersion = (git --version 2>$null) } catch {}
-Write-Host "  - Git: $($gitVersion ?? 'not installed')"
+if ($gitVersion) { Write-Host "  - Git: $gitVersion" } else { Write-Host "  - Git: not installed" }
 
 Write-Host ""
 Write-Host "Your Claude configuration is preserved:"

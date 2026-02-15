@@ -96,6 +96,94 @@ if (-not $isAdmin) {
 }
 
 # -------------------------------------------
+# License Validation
+# -------------------------------------------
+
+$SUPABASE_URL = "https://qvnfbdcgjylonlebopey.supabase.co"
+$SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2bmZiZGNnanlsb25sZWJvcGV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzExODE4MDgsImV4cCI6MjA4Njc1NzgwOH0.HUQ_F58lUAHbeYMdZhre_ntCf2k-XR09u4QXj7bHrAo"
+$LICENSE_DIR = "$env:USERPROFILE\.rising-tides"
+$LICENSE_FILE = "$LICENSE_DIR\license.key"
+
+Write-Host ""
+Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Cyan
+Write-Host "   LICENSE VALIDATION                    " -ForegroundColor Cyan
+Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Cyan
+Write-Host ""
+
+$LICENSE_KEY = $null
+
+# Check for stored license first
+if (Test-Path $LICENSE_FILE) {
+    $STORED_KEY = (Get-Content $LICENSE_FILE -ErrorAction SilentlyContinue | Select-Object -First 1).Trim()
+    if ($STORED_KEY) {
+        Write-Host "Found stored license key..." -ForegroundColor Yellow
+        $LICENSE_KEY = $STORED_KEY
+    }
+}
+
+# If no stored key, prompt for one
+if (-not $LICENSE_KEY) {
+    Write-Host "Enter your license key from your purchase confirmation email."
+    Write-Host ""
+    $LICENSE_KEY = Read-Host "License key (RT-XXXX-XXXX-XXXX-XXXX)"
+}
+
+# Validate format
+if ($LICENSE_KEY -notmatch '^RT-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$') {
+    Write-Host ""
+    Write-Host "[ERROR] Invalid license key format." -ForegroundColor Red
+    Write-Host "  Keys look like: RT-XXXX-XXXX-XXXX-XXXX"
+    Write-Host ""
+    Write-Host "  Check your purchase confirmation email or contact:"
+    Write-Host "  nick@sunsetsystems.co"
+    exit 1
+}
+
+# Validate against Supabase
+Write-Host ""
+Write-Host "Validating license..."
+
+$headers = @{
+    "apikey" = $SUPABASE_ANON_KEY
+    "Content-Type" = "application/json"
+}
+$body = @{ key = $LICENSE_KEY } | ConvertTo-Json
+
+try {
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    $response = Invoke-RestMethod -Uri "$SUPABASE_URL/rest/v1/rpc/validate_license" `
+        -Method Post -Headers $headers -Body $body -ErrorAction Stop
+
+    if ($response.valid -eq $true) {
+        Write-Host ""
+        Write-Host "[OK] License valid!" -ForegroundColor Green
+        Write-Host "  Tier: $($response.tier)"
+        Write-Host "  Activations: $($response.activations) / $($response.max_activations)"
+
+        # Store license key for future use
+        if (-not (Test-Path $LICENSE_DIR)) {
+            New-Item -ItemType Directory -Path $LICENSE_DIR -Force | Out-Null
+        }
+        $LICENSE_KEY | Set-Content $LICENSE_FILE -Encoding UTF8
+        Write-Host "[OK] License key saved for future updates" -ForegroundColor Green
+        Write-Host ""
+    } else {
+        Write-Host ""
+        Write-Host "[ERROR] License validation failed: $($response.error)" -ForegroundColor Red
+        Write-Host ""
+        Write-Host "  If you believe this is an error, contact:"
+        Write-Host "  nick@sunsetsystems.co"
+        exit 1
+    }
+} catch {
+    Write-Host ""
+    Write-Host "[ERROR] Could not connect to license server." -ForegroundColor Red
+    Write-Host "  Check your internet connection and try again."
+    Write-Host "  Error: $_"
+    exit 1
+}
+
+# -------------------------------------------
 # Step 1: Check winget
 # -------------------------------------------
 

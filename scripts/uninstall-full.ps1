@@ -223,15 +223,15 @@ Write-Host "Still installed (you may want to keep these):" -ForegroundColor Cyan
 
 $nodeVersion = $null
 try { $nodeVersion = (node --version 2>$null) } catch {}
-Write-Host "  - Node.js: $($nodeVersion ?? 'not installed')"
+if ($nodeVersion) { Write-Host "  - Node.js: $nodeVersion" } else { Write-Host "  - Node.js: not installed" }
 
 $gitVersion = $null
 try { $gitVersion = (git --version 2>$null) } catch {}
-Write-Host "  - Git: $($gitVersion ?? 'not installed')"
+if ($gitVersion) { Write-Host "  - Git: $gitVersion" } else { Write-Host "  - Git: not installed" }
 
 $pythonVersion = $null
 try { $pythonVersion = (python --version 2>$null) } catch {}
-Write-Host "  - Python: $($pythonVersion ?? 'not installed')"
+if ($pythonVersion) { Write-Host "  - Python: $pythonVersion" } else { Write-Host "  - Python: not installed" }
 
 Write-Host ""
 Write-Host "To reinstall everything:" -ForegroundColor Yellow
