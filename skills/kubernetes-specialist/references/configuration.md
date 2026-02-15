@@ -71,9 +71,10 @@ metadata:
 type: Opaque
 stringData:
   # Plain text (will be base64 encoded)
-  db-password: "MySecurePassword123!"
-  api-key: "sk-1234567890abcdef"
-  jwt-secret: "super-secret-jwt-key"
+  # NOTE: Replace these with your actual secrets - never commit real credentials!
+  db-password: "<REPLACE_WITH_DB_PASSWORD>"
+  api-key: "<REPLACE_WITH_API_KEY>"
+  jwt-secret: "<REPLACE_WITH_JWT_SECRET>"
 data:
   # Already base64 encoded
   tls.crt: LS0tLS1CRUdJTi...
@@ -114,10 +115,10 @@ stringData:
     {
       "auths": {
         "myregistry.io": {
-          "username": "myuser",
-          "password": "mypassword",
+          "username": "<REPLACE_WITH_USERNAME>",
+          "password": "<REPLACE_WITH_PASSWORD>",
           "email": "user@example.com",
-          "auth": "bXl1c2VyOm15cGFzc3dvcmQ="
+          "auth": "<REPLACE_WITH_BASE64_AUTH>"
         }
       }
     }
@@ -134,7 +135,7 @@ metadata:
 type: kubernetes.io/basic-auth
 stringData:
   username: admin
-  password: super-secret-password
+  password: <REPLACE_WITH_PASSWORD>
 ```
 
 ### SSH Auth Secret
@@ -268,7 +269,7 @@ metadata:
 type: Opaque
 immutable: true
 stringData:
-  password: "MyPassword123"
+  password: "<REPLACE_WITH_PASSWORD>"
 ```
 
 ## External Secrets Operator

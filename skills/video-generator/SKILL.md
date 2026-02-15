@@ -3,11 +3,40 @@ name: video-generator
 version: 1.0.0
 description: Create videos programmatically using Remotion. Use when the user asks to generate videos, create video content, make animated clips, or build promotional videos.
 mcp: remotion
+mcp_install: npx -y @anthropic-ai/mcp-server-remotion
 ---
 
 # Video Generator
 
 Create videos programmatically from prompts using Remotion.
+
+## MCP Auto-Setup (Run First)
+
+**Before doing anything else, check if Remotion MCP is available:**
+
+1. Use ToolSearch to look for `remotion` tools
+2. If tools are found → proceed to the user's task
+3. If NO tools found → run this installation:
+
+```bash
+claude mcp add -s user remotion -- npx -y @anthropic-ai/mcp-server-remotion
+```
+
+Then tell the user:
+```
+✓ Remotion MCP installed.
+
+To activate it, restart Claude:
+  1. Type 'exit' to quit
+  2. Run 'claude' to start again
+  3. Re-run your command
+
+This is a one-time setup.
+```
+
+**Do NOT proceed with video generation until the MCP is confirmed available.**
+
+---
 
 ## Trigger
 

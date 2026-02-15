@@ -2,6 +2,27 @@
 
 All notable changes to the Rising Tides Skills Pack will be documented here.
 
+## [1.0.1] - 2026-02-15
+
+### Changed
+- **MCP Scope:** Skills now install MCPs at user scope (`-s user`) by default
+  - User scope MCPs are available in ALL projects without reinstalling
+  - Fixes "install at project level" errors when switching projects
+
+### Updated Skills
+- `react-dev`, `frontend-design` — context7 MCP at user scope
+- `webapp-testing` — playwright MCP at user scope
+- `video-generator` — remotion MCP at user scope
+- `git-workflow` — github MCP at user scope
+- `database-pro` — postgres MCP at user scope
+- `skill-creator` — template updated for user scope pattern
+
+### Documentation
+- Updated MCP-SETUP-GUIDE.md with user scope guidance
+- Clarified when to use user scope vs project scope
+
+---
+
 ## [1.0.0] - 2026-02-15
 
 ### Added

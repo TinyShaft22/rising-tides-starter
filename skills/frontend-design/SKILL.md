@@ -3,6 +3,35 @@ name: frontend-design
 description: Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, mockups, prototypes, or when styling/beautifying any web UI). Generates creative, polished, accessible code and UI design that avoids generic AI aesthetics.
 license: Complete terms in LICENSE.txt
 mcp: context7
+mcp_install: npx -y @upstash/context7-mcp
+---
+
+## MCP Auto-Setup (Run First)
+
+**Before doing anything else, check if Context7 MCP is available:**
+
+1. Use ToolSearch to look for `context7` tools
+2. If tools are found → proceed to the user's task
+3. If NO tools found → run this installation:
+
+```bash
+claude mcp add -s user context7 -- npx -y @upstash/context7-mcp
+```
+
+Then tell the user:
+```
+✓ Context7 MCP installed.
+
+To activate it, restart Claude:
+  1. Type 'exit' to quit
+  2. Run 'claude' to start again
+  3. Re-run your command
+
+This is a one-time setup.
+```
+
+**Do NOT proceed until the MCP is confirmed available.**
+
 ---
 
 ## MCP Integration: Context7

@@ -23,16 +23,17 @@ prompt_input() {
     local prompt_text="$1"
     local var_name="$2"
     local required="$3"
-    
+
     while true; do
         echo -e "${CYAN}${prompt_text}${NC}"
         read -r input
-        
+
         if [ -n "$input" ]; then
-            eval "$var_name=\"$input\""
+            # Use printf -v for safe variable assignment (avoids eval injection)
+            printf -v "$var_name" '%s' "$input"
             break
         elif [ "$required" != "true" ]; then
-            eval "$var_name=\"\""
+            printf -v "$var_name" '%s' ""
             break
         else
             echo -e "${RED}This field is required.${NC}"

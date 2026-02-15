@@ -311,7 +311,59 @@ Write the YAML frontmatter with `name` and `description`:
   - Include all "when to use" information here - Not in the body. The body is only loaded after triggering, so "When to Use This Skill" sections in the body are not helpful to Claude.
   - Example description for a `docx` skill: "Comprehensive document creation, editing, and analysis with support for tracked changes, comments, formatting preservation, and text extraction. Use when Claude needs to work with professional documents (.docx files) for: (1) Creating new documents, (2) Modifying or editing content, (3) Working with tracked changes, (4) Adding comments, or any other document tasks"
 
-Do not include any other fields in YAML frontmatter.
+**Optional MCP fields** (include only if the skill requires an MCP):
+
+- `mcp`: The MCP name (e.g., `playwright`, `context7`, `remotion`)
+- `mcp_install`: The npx install command (e.g., `npx -y @playwright/mcp`)
+
+Example frontmatter with MCP dependency:
+
+```yaml
+---
+name: webapp-testing
+description: Browser automation and testing using Playwright...
+mcp: playwright
+mcp_install: npx -y @playwright/mcp
+---
+```
+
+##### MCP Auto-Setup Section (Required for MCP-dependent skills)
+
+**If your skill declares an `mcp:` field, you MUST include an auto-setup section immediately after the frontmatter.** This ensures beginners can use the skill without manually configuring MCPs.
+
+Add this section at the top of the skill body:
+
+```markdown
+## MCP Auto-Setup (Run First)
+
+**Before doing anything else, check if [MCP_NAME] MCP is available:**
+
+1. Use ToolSearch to look for `[mcp_name]` tools
+2. If tools are found → proceed to the user's task
+3. If NO tools found → run this installation:
+
+\`\`\`bash
+claude mcp add -s user [mcp_name] -- [mcp_install_command]
+\`\`\`
+
+Then tell the user:
+\`\`\`
+✓ [MCP_NAME] MCP installed.
+
+To activate it, restart Claude:
+  1. Type 'exit' to quit
+  2. Run 'claude' to start again
+  3. Re-run your command
+
+This is a one-time setup.
+\`\`\`
+
+**Do NOT proceed until the MCP is confirmed available.**
+```
+
+Replace `[MCP_NAME]`, `[mcp_name]`, and `[mcp_install_command]` with actual values.
+
+**Why this matters:** Users shouldn't need to know about MCPs. The skill should handle setup automatically. This creates a zero-friction experience where beginners just use the skill and Claude handles the rest.
 
 ##### Body
 

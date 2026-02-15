@@ -3,9 +3,38 @@ name: react-dev
 version: 1.1.0
 description: This skill should be used when building React components with TypeScript, typing hooks, handling events, managing UI states (loading, error, empty), optimizing performance, or when React TypeScript, React 19, Server Components are mentioned. Covers type-safe patterns for React 18-19 including generic components, proper event typing, routing integration (TanStack Router, React Router), UI state management, and performance optimization.
 mcp: context7
+mcp_install: npx -y @upstash/context7-mcp
 ---
 
 # React TypeScript
+
+## MCP Auto-Setup (Run First)
+
+**Before doing anything else, check if Context7 MCP is available:**
+
+1. Use ToolSearch to look for `context7` tools
+2. If tools are found → proceed to the user's task
+3. If NO tools found → run this installation:
+
+```bash
+claude mcp add -s user context7 -- npx -y @upstash/context7-mcp
+```
+
+Then tell the user:
+```
+✓ Context7 MCP installed.
+
+To activate it, restart Claude:
+  1. Type 'exit' to quit
+  2. Run 'claude' to start again
+  3. Re-run your command
+
+This is a one-time setup.
+```
+
+**Do NOT proceed until the MCP is confirmed available.**
+
+---
 
 ## MCP Integration: Context7
 

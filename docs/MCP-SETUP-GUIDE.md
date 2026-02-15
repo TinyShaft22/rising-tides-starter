@@ -2,7 +2,7 @@
 
 > **Complete guide to configuring MCPs for Claude Code.** Covers scopes, context optimization, and project-level configuration.
 
-**Last Updated:** January 23, 2026
+**Last Updated:** February 15, 2026
 
 ---
 
@@ -39,26 +39,44 @@ MCPs can be configured at three levels:
 
 ## Recommended MCP Strategy
 
-### Global (User Scope) — Use Sparingly
+### Global (User Scope) — For Personal MCPs You Want Everywhere
 
-Only configure MCPs globally when they're needed across ALL projects:
+Configure MCPs at user scope when you want them available in ALL your projects:
 
-| MCP | Why Global |
-|-----|------------|
-| **memory** | Persistence across all projects is its entire purpose |
+| MCP | Why User Scope |
+|-----|----------------|
+| **memory** | Persistence across all projects is its purpose |
+| **playwright** | Browser automation you want everywhere |
+| **context7** | Live docs you want in all dev projects |
+| **n8n** | Workflow automation you use across projects |
 
-That's it. Everything else should be project-level.
+**Install at user scope:**
+```bash
+claude mcp add -s user playwright -- npx -y @playwright/mcp
+claude mcp add -s user context7 -- npx -y @upstash/context7-mcp
+```
 
-### Project Scope — The Default Choice
+User scope MCPs are available immediately in any project without reinstalling.
 
-Configure MCPs in each project's `.mcp.json`:
+### Project Scope — For Team Sharing
 
-| MCP | Why Project-Level |
+Configure MCPs at project scope when you want teammates to have them via `.mcp.json`:
+
+| MCP | Why Project Scope |
 |-----|-------------------|
-| **context7** | Only needed for dev projects |
-| **playwright** | Only needed for testing projects |
-| **remotion** | Only needed for video projects |
-| **github** | Could be global, but project-level is fine |
+| **project-specific** | MCPs needed for this specific codebase |
+| **team-shared** | Config commits to git for team use |
+
+**When to use project scope:**
+- Working on a team repo and want MCPs shared via git
+- Project-specific MCPs that don't make sense globally
+
+**Install at project scope:**
+```bash
+claude mcp add -s project context7 -- npx -y @upstash/context7-mcp
+```
+
+This creates/updates `.mcp.json` in the project root.
 
 ### Local Scope — For Secrets/Personal Config
 

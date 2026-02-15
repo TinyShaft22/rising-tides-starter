@@ -65,7 +65,10 @@ def main():
         for i, server in enumerate(servers):
             print(f"Starting server {i+1}/{len(servers)}: {server['cmd']}")
 
-            # Use shell=True to support commands with cd and &&
+            # SECURITY NOTE: shell=True is required to support compound commands
+            # (e.g., "cd backend && python server.py"). The command comes from
+            # CLI arguments provided by the user running this script, not from
+            # untrusted external input. Do not use this pattern for web inputs.
             process = subprocess.Popen(
                 server['cmd'],
                 shell=True,

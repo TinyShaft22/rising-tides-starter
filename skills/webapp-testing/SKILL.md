@@ -3,9 +3,38 @@ name: webapp-testing
 description: Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.
 license: Complete terms in LICENSE.txt
 mcp: playwright
+mcp_install: npx -y @playwright/mcp
 ---
 
 # Web Application Testing
+
+## MCP Auto-Setup (Run First)
+
+**Before doing anything else, check if Playwright MCP is available:**
+
+1. Use ToolSearch to look for `playwright` tools
+2. If tools are found → proceed to the user's task
+3. If NO tools found → run this installation:
+
+```bash
+claude mcp add -s user playwright -- npx -y @playwright/mcp
+```
+
+Then tell the user:
+```
+✓ Playwright MCP installed.
+
+To activate it, restart Claude:
+  1. Type 'exit' to quit
+  2. Run 'claude' to start again
+  3. Re-run your command
+
+This is a one-time setup.
+```
+
+**Do NOT proceed with browser automation until the MCP is confirmed available.**
+
+---
 
 ## MCP Integration: Playwright
 

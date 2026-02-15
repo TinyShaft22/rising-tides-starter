@@ -3,11 +3,40 @@ name: git-workflow
 description: "Git and GitHub lifecycle: quality commits with Conventional Commits, PRs, releases, issues, and GitHub Actions via gh CLI and GitHub MCP. Triggers on: commit, stage changes, split commits, push to GitHub, create PR, create release, create repo, GitHub Actions, tag version, gh."
 cli: gh
 mcp: github
+mcp_install: npx -y @anthropic-ai/mcp-server-github
 ---
 
 # Git Workflow
 
 End-to-end git and GitHub workflow using `gh` CLI and GitHub MCP.
+
+## MCP Auto-Setup (Run First)
+
+**Before using GitHub MCP features, check if it's available:**
+
+1. Use ToolSearch to look for `github` MCP tools
+2. If tools are found → proceed to the user's task
+3. If NO tools found → run this installation:
+
+```bash
+claude mcp add -s user github -- npx -y @anthropic-ai/mcp-server-github
+```
+
+Then tell the user:
+```
+✓ GitHub MCP installed.
+
+To activate it, restart Claude:
+  1. Type 'exit' to quit
+  2. Run 'claude' to start again
+  3. Re-run your command
+
+This is a one-time setup.
+```
+
+**Note:** The `gh` CLI still works without the MCP. The MCP adds richer API operations.
+
+---
 
 ## Prerequisites
 

@@ -3,11 +3,38 @@ name: database-pro
 description: Design and optimize database schemas for SQL and NoSQL. Schema design, normalization, indexing strategies, query optimization, execution plan analysis, migration patterns, performance tuning, slow query diagnosis, partitioning, and configuration tuning. Supports PostgreSQL and MySQL.
 license: MIT
 mcp: postgres
+mcp_install: npx -y @anthropic-ai/mcp-server-postgres
 ---
 
 # Database Pro
 
 Design production-ready schemas and optimize database performance.
+
+## MCP Auto-Setup (Optional)
+
+**For direct database access, check if Postgres MCP is available:**
+
+1. Use ToolSearch to look for `postgres` MCP tools
+2. If tools are found → can query database directly
+3. If NO tools found and user wants direct access → run:
+
+```bash
+claude mcp add -s user postgres -- npx -y @anthropic-ai/mcp-server-postgres
+```
+
+Then tell the user:
+```
+✓ Postgres MCP installed.
+
+To activate it, restart Claude:
+  1. Type 'exit' to quit
+  2. Run 'claude' to start again
+  3. Re-run your command
+
+This is a one-time setup.
+```
+
+**Note:** This skill works without the MCP for schema design and query optimization advice. The MCP adds direct database connectivity.
 
 ---
 
