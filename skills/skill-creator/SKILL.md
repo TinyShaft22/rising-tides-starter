@@ -334,31 +334,26 @@ mcp_install: npx -y @playwright/mcp
 Add this section at the top of the skill body:
 
 ```markdown
-## MCP Auto-Setup (Run First)
+## MCP Setup (First Run)
 
-**Before doing anything else, check if [MCP_NAME] MCP is available:**
+Before starting work, check if [MCP_NAME] tools are available:
 
 1. Use ToolSearch to look for `[mcp_name]` tools
-2. If tools are found → proceed to the user's task
-3. If NO tools found → run this installation:
+2. If tools are found → proceed directly to the user's task
+3. If tools are NOT found → set up the MCP:
 
-\`\`\`bash
-claude mcp add -s user [mcp_name] -- [mcp_install_command]
-\`\`\`
+   a. Run: `claude mcp add [mcp_name] -- [mcp_install_command]`
+      (This adds the MCP to the current project, not globally)
+   b. Tell the user: "[MCP_NAME] MCP has been added to this project.
+      Please restart Claude to activate it (type 'exit', then run 'claude')."
+   c. STOP — do not continue until user restarts and MCP is available
 
-Then tell the user:
-\`\`\`
-✓ [MCP_NAME] MCP installed.
+   If the user prefers to do it themselves, give them:
+   - Command: `claude mcp add [mcp_name] -- [mcp_install_command]`
+   - Or: they can add it to `.mcp.json` manually
 
-To activate it, restart Claude:
-  1. Type 'exit' to quit
-  2. Run 'claude' to start again
-  3. Re-run your command
-
-This is a one-time setup.
-\`\`\`
-
-**Do NOT proceed until the MCP is confirmed available.**
+IMPORTANT: Never use `-s user` or `--scope user`. Project scope is the default
+and keeps MCPs contained to where they're needed.
 ```
 
 Replace `[MCP_NAME]`, `[mcp_name]`, and `[mcp_install_command]` with actual values.

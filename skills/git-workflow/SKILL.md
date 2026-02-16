@@ -10,29 +10,30 @@ mcp_install: npx -y @anthropic-ai/mcp-server-github
 
 End-to-end git and GitHub workflow using `gh` CLI and GitHub MCP.
 
-## MCP Auto-Setup (Run First)
+## MCP Setup (First Run)
 
-**Before using GitHub MCP features, check if it's available:**
+Before starting work, check if GitHub MCP tools are available:
 
-1. Use ToolSearch to look for `github` MCP tools
-2. If tools are found → proceed to the user's task
-3. If NO tools found → run this installation:
+1. Use ToolSearch to look for `github` tools
+2. If tools are found → proceed directly to the user's task
+3. If tools are NOT found → set up the MCP:
 
-```bash
-claude mcp add -s user github -- npx -y @anthropic-ai/mcp-server-github
-```
+   a. Run: `claude mcp add github -- npx -y @anthropic-ai/mcp-server-github`
+      (This adds the MCP to the current project, not globally)
+   b. Tell the user: "GitHub MCP has been added to this project.
+      Please restart Claude to activate it (type 'exit', then run 'claude')."
+   c. Give the user a **resume prompt** they can paste after restarting:
+      "After restarting, paste this to continue where you left off:"
+      Then generate a prompt that summarizes what the user was asking for, e.g.:
+      `I was working on [user's task]. GitHub MCP should now be active. Please continue.`
+   d. STOP — do not continue until user restarts and MCP is available
 
-Then tell the user:
-```
-✓ GitHub MCP installed.
+   If the user prefers to do it themselves, give them:
+   - Command: `claude mcp add github -- npx -y @anthropic-ai/mcp-server-github`
+   - Or: they can add it to `.mcp.json` manually
 
-To activate it, restart Claude:
-  1. Type 'exit' to quit
-  2. Run 'claude' to start again
-  3. Re-run your command
-
-This is a one-time setup.
-```
+IMPORTANT: Never use `-s user` or `--scope user`. Project scope is the default
+and keeps MCPs contained to where they're needed.
 
 **Note:** The `gh` CLI still works without the MCP. The MCP adds richer API operations.
 

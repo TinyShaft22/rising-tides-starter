@@ -3,6 +3,34 @@ name: frontend-design
 description: Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, mockups, prototypes, or when styling/beautifying any web UI). Generates creative, polished, accessible code and UI design that avoids generic AI aesthetics.
 license: Complete terms in LICENSE.txt
 mcp: context7
+mcp_install: npx -y @upstash/context7-mcp
+---
+
+## MCP Setup (First Run)
+
+Before starting work, check if Context7 tools are available:
+
+1. Use ToolSearch to look for `context7` tools
+2. If tools are found → proceed directly to the user's task
+3. If tools are NOT found → set up the MCP:
+
+   a. Run: `claude mcp add context7 -- npx -y @upstash/context7-mcp`
+      (This adds the MCP to the current project, not globally)
+   b. Tell the user: "Context7 MCP has been added to this project.
+      Please restart Claude to activate it (type 'exit', then run 'claude')."
+   c. Give the user a **resume prompt** they can paste after restarting:
+      "After restarting, paste this to continue where you left off:"
+      Then generate a prompt that summarizes what the user was asking for, e.g.:
+      `I was working on [user's task]. Context7 MCP should now be active. Please continue.`
+   d. STOP — do not continue until user restarts and MCP is available
+
+   If the user prefers to do it themselves, give them:
+   - Command: `claude mcp add context7 -- npx -y @upstash/context7-mcp`
+   - Or: they can add it to `.mcp.json` manually
+
+IMPORTANT: Never use `-s user` or `--scope user`. Project scope is the default
+and keeps MCPs contained to where they're needed.
+
 ---
 
 ## MCP Integration: Context7

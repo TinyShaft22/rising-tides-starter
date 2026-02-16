@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "remotion": {
-      "command": "npx",
-      "args": ["-y", "@remotion/mcp"]
-    }
-  }
-}

@@ -10,29 +10,26 @@ mcp_install: npx -y @anthropic-ai/mcp-server-postgres
 
 Design production-ready schemas and optimize database performance.
 
-## MCP Auto-Setup (Optional)
+## MCP Setup (First Run)
 
-**For direct database access, check if Postgres MCP is available:**
+Before starting work, check if Postgres tools are available:
 
-1. Use ToolSearch to look for `postgres` MCP tools
-2. If tools are found → can query database directly
-3. If NO tools found and user wants direct access → run:
+1. Use ToolSearch to look for `postgres` tools
+2. If tools are found → proceed directly to the user's task
+3. If tools are NOT found → set up the MCP:
 
-```bash
-claude mcp add -s user postgres -- npx -y @anthropic-ai/mcp-server-postgres
-```
+   a. Run: `claude mcp add postgres -- npx -y @anthropic-ai/mcp-server-postgres`
+      (This adds the MCP to the current project, not globally)
+   b. Tell the user: "Postgres MCP has been added to this project.
+      Please restart Claude to activate it (type 'exit', then run 'claude')."
+   c. STOP — do not continue until user restarts and MCP is available
 
-Then tell the user:
-```
-✓ Postgres MCP installed.
+   If the user prefers to do it themselves, give them:
+   - Command: `claude mcp add postgres -- npx -y @anthropic-ai/mcp-server-postgres`
+   - Or: they can add it to `.mcp.json` manually
 
-To activate it, restart Claude:
-  1. Type 'exit' to quit
-  2. Run 'claude' to start again
-  3. Re-run your command
-
-This is a one-time setup.
-```
+IMPORTANT: Never use `-s user` or `--scope user`. Project scope is the default
+and keeps MCPs contained to where they're needed.
 
 **Note:** This skill works without the MCP for schema design and query optimization advice. The MCP adds direct database connectivity.
 

@@ -3,11 +3,41 @@ name: git-workflow
 description: "Git and GitHub lifecycle: quality commits with Conventional Commits, PRs, releases, issues, and GitHub Actions via gh CLI and GitHub MCP. Triggers on: commit, stage changes, split commits, push to GitHub, create PR, create release, create repo, GitHub Actions, tag version, gh."
 cli: gh
 mcp: github
+mcp_install: npx -y @anthropic-ai/mcp-server-github
 ---
 
 # Git Workflow
 
 End-to-end git and GitHub workflow using `gh` CLI and GitHub MCP.
+
+## MCP Setup (First Run)
+
+Before starting work, check if GitHub MCP tools are available:
+
+1. Use ToolSearch to look for `github` tools
+2. If tools are found → proceed directly to the user's task
+3. If tools are NOT found → set up the MCP:
+
+   a. Run: `claude mcp add github -- npx -y @anthropic-ai/mcp-server-github`
+      (This adds the MCP to the current project, not globally)
+   b. Tell the user: "GitHub MCP has been added to this project.
+      Please restart Claude to activate it (type 'exit', then run 'claude')."
+   c. Give the user a **resume prompt** they can paste after restarting:
+      "After restarting, paste this to continue where you left off:"
+      Then generate a prompt that summarizes what the user was asking for, e.g.:
+      `I was working on [user's task]. GitHub MCP should now be active. Please continue.`
+   d. STOP — do not continue until user restarts and MCP is available
+
+   If the user prefers to do it themselves, give them:
+   - Command: `claude mcp add github -- npx -y @anthropic-ai/mcp-server-github`
+   - Or: they can add it to `.mcp.json` manually
+
+IMPORTANT: Never use `-s user` or `--scope user`. Project scope is the default
+and keeps MCPs contained to where they're needed.
+
+**Note:** The `gh` CLI still works without the MCP. The MCP adds richer API operations.
+
+---
 
 ## Prerequisites
 

@@ -55,10 +55,9 @@ After cloning, plugins are at:
 
 Each plugin bundles:
 - `.claude-plugin/plugin.json` — Plugin manifest
-- `.mcp.json` — MCP configuration (auto-downloaded via `npx -y`)
-- `skills/[name]/SKILL.md` — Skill instructions
+- `skills/[name]/SKILL.md` — Skill instructions (includes MCP setup guidance)
 
-**No separate MCP configuration needed.** The plugin handles everything.
+**MCP setup is handled by the skill on first use.** When invoked, the skill checks if MCP tools are available. If not, it runs `claude mcp add` at the project level and asks the user to restart. This prevents MCP servers from auto-starting in every session.
 
 ### 2. Progressive Disclosure
 
@@ -69,8 +68,8 @@ Skills in plugins load in tiers:
 
 ### 3. Tool Search Integration
 
-MCPs bundled in plugins defer loading via Tool Search:
-- MCP tools don't load until actually needed
+When MCPs are configured (at project level via skill setup), Tool Search defers schema loading:
+- MCP tool schemas don't load into context until actually needed
 - Near-zero context cost at startup
 - Enable with: `export ENABLE_TOOL_SEARCH=true`
 
@@ -206,11 +205,10 @@ Global config (in Claude Code settings):
 [plugin-name]/
 ├── .claude-plugin/
 │   └── plugin.json        # Manifest (required)
-├── skills/
-│   └── [skill-name]/
-│       ├── SKILL.md       # Skill instructions
-│       └── references/    # Optional reference files
-└── .mcp.json              # MCP configuration (required for MCP plugins)
+└── skills/
+    └── [skill-name]/
+        ├── SKILL.md       # Skill instructions (includes MCP setup)
+        └── references/    # Optional reference files
 ```
 
 ### plugin.json
@@ -225,21 +223,6 @@ Global config (in Claude Code settings):
   }
 }
 ```
-
-### .mcp.json
-
-```json
-{
-  "mcpServers": {
-    "context7": {
-      "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp"]
-    }
-  }
-}
-```
-
-The `npx -y` flag auto-downloads the MCP server if not installed.
 
 ---
 
@@ -257,21 +240,26 @@ The `npx -y` flag auto-downloads the MCP server if not installed.
    cat ".claude-plugin/plugin.json"
    ```
 
-3. Check for JSON syntax errors in plugin.json and .mcp.json
+3. Check for JSON syntax errors in plugin.json
 
 ### MCP Not Working
 
-1. Test the MCP manually:
-   ```bash
-   npx -y @upstash/context7-mcp
-   ```
+1. Ensure the skill has been invoked at least once (it configures MCP on first use)
 
 2. Check Tool Search is enabled:
    ```bash
    echo $ENABLE_TOOL_SEARCH
    ```
 
-3. Verify .mcp.json syntax
+3. Check project `.mcp.json` for the MCP entry:
+   ```bash
+   cat .mcp.json
+   ```
+
+4. Test the MCP manually:
+   ```bash
+   npx -y @upstash/context7-mcp
+   ```
 
 ### Skill Not Found
 
@@ -321,17 +309,8 @@ description: What this skill does
 Instructions here...
 EOF
 
-# If MCP needed, create .mcp.json
-cat > my-plugin/.mcp.json << 'EOF'
-{
-  "mcpServers": {
-    "mcp-name": {
-      "command": "npx",
-      "args": ["-y", "@package/mcp-server"]
-    }
-  }
-}
-EOF
+# MCP setup is handled inside SKILL.md — no .mcp.json needed in the plugin.
+# The skill's "MCP Setup (First Run)" section runs `claude mcp add` at project level.
 ```
 
 ---

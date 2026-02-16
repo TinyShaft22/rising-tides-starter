@@ -8,31 +8,30 @@ mcp_install: npx -y @upstash/context7-mcp
 
 # React TypeScript
 
-## MCP Auto-Setup (Run First)
+## MCP Setup (First Run)
 
-**Before doing anything else, check if Context7 MCP is available:**
+Before starting work, check if Context7 tools are available:
 
 1. Use ToolSearch to look for `context7` tools
-2. If tools are found → proceed to the user's task
-3. If NO tools found → run this installation:
+2. If tools are found → proceed directly to the user's task
+3. If tools are NOT found → set up the MCP:
 
-```bash
-claude mcp add -s user context7 -- npx -y @upstash/context7-mcp
-```
+   a. Run: `claude mcp add context7 -- npx -y @upstash/context7-mcp`
+      (This adds the MCP to the current project, not globally)
+   b. Tell the user: "Context7 MCP has been added to this project.
+      Please restart Claude to activate it (type 'exit', then run 'claude')."
+   c. Give the user a **resume prompt** they can paste after restarting:
+      "After restarting, paste this to continue where you left off:"
+      Then generate a prompt that summarizes what the user was asking for, e.g.:
+      `I was working on [user's task]. Context7 MCP should now be active. Please continue.`
+   d. STOP — do not continue until user restarts and MCP is available
 
-Then tell the user:
-```
-✓ Context7 MCP installed.
+   If the user prefers to do it themselves, give them:
+   - Command: `claude mcp add context7 -- npx -y @upstash/context7-mcp`
+   - Or: they can add it to `.mcp.json` manually
 
-To activate it, restart Claude:
-  1. Type 'exit' to quit
-  2. Run 'claude' to start again
-  3. Re-run your command
-
-This is a one-time setup.
-```
-
-**Do NOT proceed until the MCP is confirmed available.**
+IMPORTANT: Never use `-s user` or `--scope user`. Project scope is the default
+and keeps MCPs contained to where they're needed.
 
 ---
 

@@ -3,8 +3,8 @@
     "name": "Rising Tides Skills Pack",
     "version": "1.0.0",
     "lastUpdated": "2026-02-11",
-    "totalSkills": 187,
-    "totalPlugins": 37,
+    "totalSkills": 184,
+    "totalPlugins": 36,
     "totalCLIs": 9,
     "totalMCPs": 17,
     "totalCompanionPlugins": 11
@@ -140,12 +140,6 @@
           "@modelcontextprotocol/server-memory"
         ]
       }
-    },
-    "claude-in-chrome": {
-      "name": "Claude in Chrome",
-      "purpose": "Full browser control via Chrome extension",
-      "install": "Chrome extension",
-      "note": "Requires Claude in Chrome extension installed"
     },
     "shadcn": {
       "name": "shadcn/ui MCP",
@@ -376,18 +370,6 @@
         "test-master",
         "git-workflow",
         "debugging"
-      ]
-    },
-    {
-      "id": "browser-automation-plugin",
-      "skill": "browser-automation",
-      "mcps": [
-        "claude-in-chrome"
-      ],
-      "purpose": "Full browser control",
-      "companionSkills": [
-        "webapp-testing",
-        "chrome-extension-troubleshooting"
       ]
     },
     {
@@ -640,16 +622,6 @@
       "purpose": "Timing side-channel detection",
       "companionSkills": [
         "security-code-review"
-      ]
-    },
-    {
-      "id": "security-chrome-troubleshooting-plugin",
-      "skill": "security-chrome-troubleshooting",
-      "mcps": [],
-      "purpose": "Claude in Chrome MCP troubleshooting",
-      "companionSkills": [
-        "chrome-extension-troubleshooting",
-        "browser-automation"
       ]
     },
     {
@@ -2302,28 +2274,6 @@
           "kubernetes-specialist"
         ]
       }
-    },
-    {
-      "id": "chrome-extension-troubleshooting",
-      "name": "Chrome Extension Troubleshooting",
-      "category": "workflow",
-      "triggers": [
-        "chrome extension troubleshooting",
-        "chrome",
-        "extension",
-        "troubleshooting"
-      ],
-      "cli": null,
-      "mcp": null,
-      "plugin": null,
-      "source": "chriswiles",
-      "toolImportance": {
-        "claude-in-chrome": "recommended"
-      },
-      "relatedPlugins": [
-        "browser-automation-plugin"
-      ],
-      "description": "Use when Claude in Chrome MCP extension tools fail or behave erratically. Invoke for chrome extension, MCP troubleshooting, browser connectivity."
     },
     {
       "id": "cli-developer",
@@ -4331,25 +4281,6 @@
       "description": "Use when writing or reviewing YARA detection rules. Invoke for YARA rules, malware detection, threat hunting, YARA-X, rule authoring."
     },
     {
-      "id": "security-chrome-troubleshooting",
-      "name": "Chrome MCP Troubleshooting",
-      "category": "utilities",
-      "triggers": [
-        "chrome troubleshooting",
-        "claude in chrome",
-        "mcp extension",
-        "browser extension not connected"
-      ],
-      "cli": null,
-      "mcp": null,
-      "plugin": "security-chrome-troubleshooting-plugin",
-      "source": "trailofbits",
-      "toolImportance": {
-        "claude-in-chrome": "recommended"
-      },
-      "description": "Diagnose and fix Claude in Chrome MCP extension connectivity issues. Use when mcp__claude-in-chrome__* tools fail, return \"Browser extension is not connected\", or behave erratically."
-    },
-    {
       "id": "nextjs-security",
       "name": "Next.js Security Orchestrator",
       "category": "security",
@@ -4745,29 +4676,6 @@
       "plugin": "ask-questions-first-plugin",
       "source": "trailofbits",
       "description": "Use when requirements are underspecified or ambiguous. Invoke for clarification, requirements gathering, specification questions."
-    },
-    {
-      "id": "browser-automation",
-      "name": "Browser Automation",
-      "category": "workflow",
-      "triggers": [
-        "browser automation",
-        "chrome automation",
-        "screenshots",
-        "web interaction",
-        "form filling"
-      ],
-      "cli": null,
-      "mcp": "claude-in-chrome",
-      "plugin": "browser-automation-plugin",
-      "source": "nickmohler",
-      "toolImportance": {
-        "claude-in-chrome": "essential"
-      },
-      "relatedPlugins": [
-        "webapp-testing-plugin"
-      ],
-      "description": "Control Chrome browser for automation, testing, screenshots, and web interaction. Use when you need to navigate websites, fill forms, click elements, or capture screenshots."
     },
     {
       "id": "culture-index",
