@@ -25,7 +25,7 @@ We believe in full transparency — [review the complete audit report](SECURITY.
 
 | Metric | Result |
 |--------|--------|
-| Files Scanned | 1,012+ |
+| Files Scanned | 1,100+ |
 | Critical Issues | 0 |
 | High Issues | 0 |
 | Community Repos Audited | 16 |
