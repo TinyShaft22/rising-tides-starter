@@ -271,3 +271,107 @@ This document will be updated when:
 - [Skills Security Audit](SECURITY-AUDIT-SKILLS.md) - Detailed skill findings
 - [Plugin Security Audit](SECURITY-AUDIT-PLUGINS.md) - MCP permission analysis
 - [Community Repository Audit](SECURITY-AUDIT-COMMUNITY-REPOS.md) - Third-party repo assessments
+
+---
+
+## Incremental Audit Process
+
+When adding new skills, plugins, or MCPs, you only need to audit the new additions — not the entire repository.
+
+### Baseline Audit (February 15, 2026)
+
+The following counts represent the **audited baseline**. Anything beyond these counts requires incremental audit.
+
+| Component | Baseline Count | Baseline Date |
+|-----------|----------------|---------------|
+| Skills | 177 | 2026-02-15 |
+| Plugins | 38 | 2026-02-15 |
+| MCP Configurations | 15 | 2026-02-15 |
+| Starter Pack Scripts | 19 | 2026-02-15 |
+| Python Scripts (in skills) | 72 | 2026-02-15 |
+| Shell Scripts (in skills) | 4 | 2026-02-15 |
+| Community Repos | 16 | 2026-02-15 |
+
+### How to Perform an Incremental Audit
+
+**Step 1: Identify New Additions**
+
+Compare current counts against baseline:
+```bash
+# Count current skills
+ls -d skills/*/ | wc -l
+
+# Count current plugins
+ls -d plugins/*/ | wc -l
+
+# Find skills added after baseline date
+find skills/ -name "SKILL.md" -newermt "2026-02-15" -type f
+```
+
+**Step 2: Audit New Skills**
+
+For each new skill, check:
+- [ ] No hardcoded API keys (search for `sk_live`, `pk_live`, `AKIA`, etc.)
+- [ ] No malicious URLs (external curl/wget, suspicious domains)
+- [ ] No command injection patterns (`eval`, `exec`, unquoted variables)
+- [ ] No data exfiltration (POST to external domains)
+- [ ] Source repository has compatible license (MIT, Apache-2.0)
+
+**Step 3: Audit New Plugins**
+
+For each new plugin with MCP configuration:
+- [ ] Verify npm package exists: `npm view <package-name>`
+- [ ] Check package publisher is legitimate
+- [ ] Document required environment variables
+- [ ] Classify risk level (LOW/MEDIUM/HIGH/CRITICAL)
+- [ ] Add to Approved MCPs Registry if verified
+
+**Step 4: Audit New Scripts**
+
+For any new Python or shell scripts:
+- [ ] No `eval()` or `exec()` with user input
+- [ ] No `shell=True` without documentation
+- [ ] No `verify=False` without justification
+- [ ] No `rm -rf` with variables
+- [ ] No privilege escalation beyond documented scope
+
+**Step 5: Audit New Community Sources**
+
+For skills from new repositories:
+- [ ] Repository exists: `gh repo view owner/repo`
+- [ ] License is compatible: `gh api repos/owner/repo/license`
+- [ ] No security advisories: `gh api repos/owner/repo/security-advisories`
+- [ ] Add to Community Repository Audit with verdict
+
+**Step 6: Update Counts**
+
+After audit passes, update:
+1. This file's Audit Summary table
+2. This file's Baseline Audit table (new baseline)
+3. README.md security metrics
+4. Relevant detailed audit reports
+
+### Incremental Audit Log
+
+Record each incremental audit here:
+
+| Date | Auditor | Added | Removed | Result | Notes |
+|------|---------|-------|---------|--------|-------|
+| 2026-02-15 | Claude Opus 4.5 | Baseline (177 skills, 38 plugins) | — | PASS | Initial comprehensive audit |
+| | | | | | |
+
+### Quick Audit Commands
+
+```bash
+# Check for hardcoded credentials in new files
+grep -rE "(sk_live_|pk_live_|AKIA|api_key_)[a-zA-Z0-9]{16,}" skills/NEW_SKILL/
+
+# Check for dangerous patterns
+grep -rE "eval\(|exec\(|shell=True|verify=False" skills/NEW_SKILL/
+
+# Verify npm package exists
+npm view @package/name version
+
+# Check GitHub repo license
+gh api repos/owner/repo --jq '.license.spdx_id'
+```
