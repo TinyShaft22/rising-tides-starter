@@ -4,9 +4,9 @@
     "version": "1.0.0",
     "lastUpdated": "2026-02-11",
     "totalSkills": 187,
-    "totalPlugins": 38,
+    "totalPlugins": 37,
     "totalCLIs": 9,
-    "totalMCPs": 18,
+    "totalMCPs": 17,
     "totalCompanionPlugins": 11
   },
   "clis": {
@@ -171,19 +171,7 @@
         ]
       }
     },
-    "docker": {
-      "name": "Docker MCP",
-      "purpose": "Container management, image operations, Docker Compose",
-      "install": "npx -y mcp-server-docker",
-      "config": {
-        "command": "npx",
-        "args": [
-          "-y",
-          "mcp-server-docker"
-        ]
-      }
-    },
-    "github-actions": {
+        "github-actions": {
       "name": "GitHub Actions MCP",
       "purpose": "Manage workflows, trigger runs, view logs",
       "install": "npx -y github-actions-mcp-server",
@@ -475,20 +463,6 @@
         "memory"
       ],
       "purpose": "Direct memory management"
-    },
-    {
-      "id": "docker-plugin",
-      "skill": "docker-management",
-      "mcps": [
-        "docker"
-      ],
-      "purpose": "Docker container management",
-      "companionSkills": [
-        "kubernetes-specialist",
-        "devops-engineer",
-        "microservices-architect",
-        "terraform-pro"
-      ]
     },
     {
       "id": "github-actions-plugin",
@@ -2554,7 +2528,6 @@
         "github": "optional"
       },
       "relatedPlugins": [
-        "docker-plugin",
         "github-actions-plugin"
       ],
       "description": "Use when setting up CI/CD pipelines, containerizing applications, or managing infrastructure as code. Invoke for pipelines, Docker, Kubernetes, cloud platforms, GitOps."
@@ -2600,8 +2573,8 @@
         "management"
       ],
       "cli": null,
-      "mcp": "docker",
-      "plugin": "docker-plugin",
+      "mcp": null,
+      "plugin": null,
       "source": "nickmohler",
       "toolImportance": {
         "docker": "essential"
@@ -2813,8 +2786,7 @@
         "gh": "recommended"
       },
       "relatedPlugins": [
-        "git-workflow-plugin",
-        "docker-plugin"
+        "git-workflow-plugin"
       ],
       "description": "Use when working with GitHub Actions CI/CD pipelines. Invoke for listing, triggering, monitoring, debugging, and rerunning workflows."
     },
@@ -2836,8 +2808,7 @@
         "github": "recommended"
       },
       "relatedPlugins": [
-        "git-workflow-plugin",
-        "docker-plugin"
+        "git-workflow-plugin"
       ],
       "description": "Use when setting up GitOps with ArgoCD or Flux, designing repository structures, implementing multi-cluster deployments, managing secrets in Git, or configuring progressive delivery. Invoke for ArgoCD 3.x setup, Flux 2.7 bootstrap, ApplicationSets, SOPS/Sealed Secrets, Argo Rollouts, Flagger canary deployments, and sync troubleshooting."
     },
@@ -3040,9 +3011,7 @@
       "toolImportance": {
         "docker": "recommended"
       },
-      "relatedPlugins": [
-        "docker-plugin"
-      ],
+      "relatedPlugins": [],
       "description": "Use when deploying or managing Kubernetes workloads requiring cluster configuration, security hardening, or troubleshooting. Invoke for Helm charts, RBAC policies, NetworkPolicies, storage configuration, performance optimization.",
       "dependencies": {
         "recommended": [
@@ -3169,9 +3138,7 @@
         "docker": "recommended",
         "context7": "optional"
       },
-      "relatedPlugins": [
-        "docker-plugin"
-      ],
+      "relatedPlugins": [],
       "description": "Use when designing distributed systems, decomposing monoliths, or implementing microservices patterns. Invoke for service boundaries, DDD, saga patterns, event sourcing, service mesh, distributed tracing.",
       "dependencies": {
         "recommended": [
@@ -4550,9 +4517,7 @@
       "toolImportance": {
         "context7": "recommended"
       },
-      "relatedPlugins": [
-        "docker-plugin"
-      ],
+      "relatedPlugins": [],
       "description": "Use when working with Terraform, OpenTofu, Terragrunt, or infrastructure as code. Invoke for module development, state management, testing strategies, CI/CD pipelines, multi-environment workflows, troubleshooting, and IaC best practices across AWS, Azure, and GCP."
     },
     {
