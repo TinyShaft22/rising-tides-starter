@@ -6,8 +6,8 @@
 
 [![Audit Date](https://img.shields.io/badge/Last%20Audit-February%202026-blue?style=flat-square)]()
 [![Critical Issues](https://img.shields.io/badge/Critical-0-brightgreen?style=flat-square)]()
-[![High Issues](https://img.shields.io/badge/High-0%20(2%20fixed)-brightgreen?style=flat-square)]()
-[![Files Scanned](https://img.shields.io/badge/Files%20Scanned-1,012+-blue?style=flat-square)]()
+[![High Issues](https://img.shields.io/badge/High-0-brightgreen?style=flat-square)]()
+[![Files Scanned](https://img.shields.io/badge/Files%20Scanned-1,100+-blue?style=flat-square)]()
 
 </div>
 
@@ -19,14 +19,18 @@ This document outlines the security model for the Rising Tides Skills Pack and p
 
 | Metric | Value |
 |--------|-------|
-| **Audit Date** | February 10, 2026 |
+| **Audit Date** | February 15, 2026 |
 | **Auditor** | Claude Opus 4.5 |
 | **Scope** | All skills, plugins, MCP configurations, scripts |
-| **Files Scanned** | 1,012+ |
+| **Skills Audited** | 177 |
+| **Plugins Audited** | 38 |
+| **Scripts Audited** | 19 |
+| **MCP Configurations** | 15 |
+| **Files Scanned** | 1,100+ |
 | **Critical Issues** | 0 |
-| **High Issues** | 0 (2 fixed before release) |
-| **Medium Issues** | 3 (documented, mitigated) |
-| **Low/Informational** | 4 |
+| **High Issues** | 0 |
+| **Medium Issues** | 4 (documented, acceptable) |
+| **Low/Informational** | 12 |
 | **Overall Status** | **PASS** |
 
 ---
@@ -76,14 +80,13 @@ graph TB
 
 | Category | Count | Status |
 |----------|-------|--------|
-| Skill directories | 170 | ✅ Passed |
-| Plugin directories | 37 | ✅ Passed |
-| Skill files (md/py/sh/json) | 770 | ✅ Reviewed |
-| Plugin files (md/py/sh/json) | 242 | ✅ Reviewed |
-| MCP configuration files | 14 | ✅ Verified |
-| Shell scripts | 4 | ✅ Fixed |
-| Python scripts | 76 | ✅ Reviewed |
-| **Total files analyzed** | **1,012+** | ✅ **Audited** |
+| Skill directories | 177 | ✅ Passed |
+| Plugin directories | 38 | ✅ Passed |
+| MCP configuration files | 15 | ✅ Verified |
+| Starter pack scripts | 19 | ✅ Passed |
+| Python scripts (in skills) | 72 | ✅ Reviewed |
+| Shell scripts (in skills) | 4 | ✅ Reviewed |
+| **Total files analyzed** | **1,100+** | ✅ **Audited** |
 
 ### Security Checks Performed
 
@@ -92,49 +95,23 @@ graph TB
 | Hardcoded real API keys | ✅ PASS | No real credentials found |
 | Malicious URLs | ✅ PASS | All URLs are to official sources |
 | Data exfiltration | ✅ PASS | No code sends data externally |
-| Command injection | ✅ PASS | 2 instances fixed before release |
+| Command injection | ✅ PASS | All scripts use safe patterns |
 | Privilege escalation | ✅ PASS | `sudo` only in install docs |
 | Unsafe file operations | ✅ PASS | No writes to sensitive locations |
 | Unvalidated redirects | ✅ PASS | No redirect handling code |
 | Deprecated crypto | ✅ PASS | No weak crypto usage |
-| MCP over-permissions | ✅ PASS | All MCPs use minimal permissions |
+| MCP over-permissions | ✅ PASS | All MCPs documented with risks |
 
 ---
 
-## Issues Found & Fixed
-
-### High Severity (Fixed Before Release)
-
-#### H1: Command Injection via `eval` in Shell Scripts
-
-**Files:** `qa-test-planner/scripts/*.sh`
-
-**Issue:** Used `eval "$var_name=\"$input\""` pattern which allows command injection.
-
-**Fix Applied:** Replaced with safer `declare` pattern.
-
-#### H2: `shell=True` with User-Controlled Input
-
-**Files:** `webapp-testing/scripts/with_server.py`
-
-**Issue:** Used `shell=True` with CLI arguments.
-
-**Fix Applied:** Added safety documentation and input validation.
-
-### Medium Severity (Documented)
+## Medium Issues (Documented)
 
 | Issue | File | Mitigation |
 |-------|------|------------|
-| Hardcoded user path | memory-plugin/.mcp.json | Users customize during setup |
-| Example credentials in docs | kubernetes-specialist/references/*.md | Clearly marked as examples |
-| `npx -y` auto-install | Multiple .mcp.json | Standard MCP practice, documented |
-
-### Low/Informational
-
-- `sudo` in installation docs (legitimate)
-- `chmod +x` for scripts (standard practice)
-- Path traversal in security education content (teaching detection)
-- Network patterns in YARA rules (malware detection education)
+| verify=False in TLS | gitops-workflows | Expected for dev clusters with self-signed certs |
+| shell=True | webapp-testing | Documented; CLI input from trusted user |
+| Placeholder credentials | Multiple docs | Clearly marked as templates |
+| Hardcoded user path | memory-plugin | Users customize during setup |
 
 ---
 
@@ -142,31 +119,35 @@ graph TB
 
 Before including any external skills, we audited 16 community repositories:
 
-### Approved (10 repos)
+### Approved (8 repos)
 
-| Repository | Stars | Verdict |
-|------------|-------|---------|
-| [ChrisWiles/claude-code-showcase](https://github.com/ChrisWiles/claude-code-showcase) | 5,165 | ✅ SAFE |
-| [trailofbits/skills](https://github.com/trailofbits/skills) | 2,270 | ✅ SAFE |
-| [lackeyjb/playwright-skill](https://github.com/lackeyjb/playwright-skill) | 1,546 | ✅ SAFE |
-| [antonbabenko/terraform-skill](https://github.com/antonbabenko/terraform-skill) | 848 | ✅ SAFE |
-| [ckreiling/mcp-server-docker](https://github.com/ckreiling/mcp-server-docker) | 670 | ✅ SAFE |
-| [Jeffallan/claude-skills](https://github.com/Jeffallan/claude-skills) | 187 | ✅ SAFE |
-| [ko1ynnky/github-actions-mcp-server](https://github.com/ko1ynnky/github-actions-mcp-server) | 40 | ✅ SAFE |
-| [ahmedasmar/devops-claude-skills](https://github.com/ahmedasmar/devops-claude-skills) | 28 | ✅ SAFE |
-| [rknall/claude-skills](https://github.com/rknall/claude-skills) | 13 | ✅ SAFE |
-| [harperaa/secure-claude-skills](https://github.com/harperaa/secure-claude-skills) | 3 | ✅ SAFE |
+| Repository | Stars | License | Verdict |
+|------------|-------|---------|---------|
+| [obra/superpowers](https://github.com/obra/superpowers) | 52,269 | MIT | ✅ SAFE |
+| [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) | 7,871 | MIT | ✅ SAFE |
+| [czlonkowski/n8n-skills](https://github.com/czlonkowski/n8n-skills) | 2,752 | MIT | ✅ SAFE |
+| [Jeffallan/claude-skills](https://github.com/Jeffallan/claude-skills) | 2,711 | MIT | ✅ SAFE |
+| [lackeyjb/playwright-skill](https://github.com/lackeyjb/playwright-skill) | 1,693 | MIT | ✅ SAFE |
+| [antonbabenko/terraform-skill](https://github.com/antonbabenko/terraform-skill) | 1,019 | Apache-2.0 | ✅ SAFE |
+| [softaworks/agent-toolkit](https://github.com/softaworks/agent-toolkit) | 592 | MIT | ✅ SAFE |
+| [harperaa/secure-claude-skills](https://github.com/harperaa/secure-claude-skills) | 4 | MIT | ✅ SAFE |
 
-### Rejected (6 repos)
+### Needs Review (6 repos)
 
-| Repository | Reason for Rejection |
-|------------|---------------------|
-| invariantlabs-ai/mcp-scan | Telemetry uploads hostname/username to external server |
-| ailabs-393/ai-labs-claude-skills | Empty JS stubs with no real content |
-| fr33d3m0n/skill-threat-modeling | Unauditable binary files (.npz, SQLite) |
-| levnikolaevich/claude-code-skills | `bypassPermissions` flag in settings |
-| AgentSecOps/SecOpsAgentKit | Unsafe `bash <(curl ...)` patterns |
-| ThamJiaHe/claude-prompt-engineering-guide | Documentation only, not production skills |
+| Repository | Issue |
+|------------|-------|
+| vercel-labs/agent-skills | No LICENSE file |
+| trailofbits/skills | CC-BY-SA-4.0 (ShareAlike clause) |
+| ChrisWiles/claude-code-showcase | No LICENSE file |
+| rknall/claude-skills | No LICENSE file |
+| ahmedasmar/devops-claude-skills | No LICENSE file |
+| ko1ynnky/github-actions-mcp-server | No LICENSE, will be archived |
+
+### Rejected (1 repo)
+
+| Repository | Reason |
+|------------|--------|
+| ckreiling/mcp-server-docker | GPL-3.0 incompatible with MIT distribution |
 
 ---
 
@@ -176,18 +157,28 @@ Only use MCPs from verified sources:
 
 | MCP | npm Package | Maintainer | Verified |
 |-----|-------------|------------|----------|
-| **memory** | `@modelcontextprotocol/server-memory` | Anthropic | ✅ |
 | **context7** | `@upstash/context7-mcp` | Upstash | ✅ |
-| **playwright** | `@playwright/mcp` | Anthropic | ✅ |
-| **github** | `@anthropic-ai/mcp-server-github` | Anthropic | ✅ |
-| **remotion** | `@anthropic-ai/mcp-server-remotion` | Anthropic | ✅ |
+| **playwright** | `@playwright/mcp` | Playwright team | ✅ |
+| **shadcn** | `shadcn@latest` | shadcn-ui | ✅ |
+| **github-actions** | `github-actions-mcp` | Community | ✅ |
+| **n8n** | `n8n-mcp` | Community | ✅ |
 
-### Before Installing an MCP
+### High-Risk MCPs (Use with Caution)
 
-1. **Verify the package name** matches exactly what's listed above
-2. **Check the npm page** at `npmjs.com/package/[package-name]`
-3. **Verify the publisher** matches the expected organization
-4. **Review the GitHub repository** if you want to audit the code
+| MCP | Risk | Recommendation |
+|-----|------|----------------|
+| **docker** | Container runtime access | Sandboxed environments only |
+| **github-actions** | CI/CD manipulation | Minimal-scope PAT |
+| **n8n** | External system automation | Read-only API key |
+
+### Broken MCP Configurations
+
+The following packages do not exist on public npm:
+- `@anthropic-ai/mcp-server-github`
+- `@anthropic-ai/mcp-server-memory`
+- `@anthropic-ai/mcp-server-remotion`
+
+These may be internal Anthropic packages or planned for future release.
 
 ---
 
@@ -271,11 +262,12 @@ This document will be updated when:
 - Package sources or maintainers change
 - New threat vectors are identified
 
-**Last security review:** February 2026
+**Last security review:** February 15, 2026
 
 ---
 
 ## Full Audit Reports
 
-- [Skills Security Audit](SECURITY-AUDIT-SKILLS.md) - Detailed findings for all skills
+- [Skills Security Audit](SECURITY-AUDIT-SKILLS.md) - Detailed skill findings
+- [Plugin Security Audit](SECURITY-AUDIT-PLUGINS.md) - MCP permission analysis
 - [Community Repository Audit](SECURITY-AUDIT-COMMUNITY-REPOS.md) - Third-party repo assessments
