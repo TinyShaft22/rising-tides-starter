@@ -14,11 +14,34 @@
 
 ---
 
+## Security
+
+<div align="center">
+
+**This entire repository has been security audited.**
+
+Every skill, script, and configuration file has been reviewed for security vulnerabilities.
+We believe in full transparency — [review the complete audit report](SECURITY.md).
+
+| Metric | Result |
+|--------|--------|
+| Files Scanned | 1,012+ |
+| Critical Issues | 0 |
+| High Issues | 0 |
+| Community Repos Audited | 16 |
+
+</div>
+
+---
+
 ## Quick Install
 
 Run the command for your platform. The script installs everything automatically.
 
 ### Mac
+
+> **Do NOT use `sudo`.** The script will prompt for your password only when needed (like installing Homebrew). Running the entire script with sudo causes permission issues.
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/setup-mac.sh -o /tmp/setup.sh && bash /tmp/setup.sh
 ```
@@ -104,12 +127,44 @@ See [CHANGELOG.md](CHANGELOG.md) for recent updates.
 
 ---
 
+## Uninstall
+
+### Remove Skills Pack Only (Keep Claude Code)
+
+Removes Rising Tides content but keeps Claude Code and all prerequisites.
+
+**Mac/Linux:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-skills.sh | bash
+```
+
+**Windows:**
+```powershell
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-skills.ps1' -OutFile "$env:TEMP\uninstall.ps1"; & "$env:TEMP\uninstall.ps1"
+```
+
+### Full Uninstall (Remove Everything)
+
+> **Warning:** This removes Claude Code, all configuration, and Rising Tides content. Cannot be undone.
+
+**Mac/Linux:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-full.sh | bash
+```
+
+**Windows (as Administrator):**
+```powershell
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-full.ps1' -OutFile "$env:TEMP\uninstall.ps1"; & "$env:TEMP\uninstall.ps1"
+```
+
+---
+
 ## Community & Support
 
 <div align="center">
 
 [![Community](https://img.shields.io/badge/Community-Skool-blue?style=for-the-badge)](https://www.skool.com/rising-tides-9034)
-[![Issues](https://img.shields.io/badge/Issues-GitHub-black?style=for-the-badge&logo=github)](https://github.com/SunsetSystemsAI/rising-tides-pack/issues)
+[![Issues](https://img.shields.io/badge/Issues-GitHub-black?style=for-the-badge&logo=github)](https://github.com/SunsetSystemsAI/rising-tides-starter/issues)
 
 **Questions?** Join the community or open an issue.
 
