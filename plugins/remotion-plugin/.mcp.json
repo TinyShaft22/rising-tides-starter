@@ -2,7 +2,7 @@
   "mcpServers": {
     "remotion": {
       "command": "npx",
-      "args": ["-y", "@anthropic-ai/mcp-server-remotion"]
+      "args": ["-y", "@remotion/mcp"]
     }
   }
 }
