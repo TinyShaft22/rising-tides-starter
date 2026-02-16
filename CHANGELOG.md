@@ -64,15 +64,15 @@ Or run the update script directly:
 
 **Windows:**
 ```powershell
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/update-windows.ps1' -OutFile "$env:TEMP\update.ps1"; & "$env:TEMP\update.ps1"
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/update-windows.ps1' -OutFile "$env:TEMP\update.ps1"; & "$env:TEMP\update.ps1"
 ```
 
 **Mac:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/update-mac.sh | bash
+curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/update-mac.sh | bash
 ```
 
 **Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/update-linux.sh | bash
+curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/update-linux.sh | bash
 ```

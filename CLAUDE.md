@@ -239,12 +239,12 @@ Removes Rising Tides content but keeps Claude Code and prerequisites.
 
 Mac/Linux:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-skills.sh -o /tmp/uninstall-skills.sh && bash /tmp/uninstall-skills.sh
+curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/uninstall-skills.sh -o /tmp/uninstall-skills.sh && bash /tmp/uninstall-skills.sh
 ```
 
 Windows:
 ```powershell
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-skills.ps1' -OutFile "$env:TEMP\uninstall-skills.ps1"; & "$env:TEMP\uninstall-skills.ps1"
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/uninstall-skills.ps1' -OutFile "$env:TEMP\uninstall-skills.ps1"; & "$env:TEMP\uninstall-skills.ps1"
 ```
 
 ### Option 2: Full Uninstall (Destructive)
@@ -265,12 +265,12 @@ Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising
 
 Mac/Linux:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-full.sh -o /tmp/uninstall-full.sh && bash /tmp/uninstall-full.sh
+curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/uninstall-full.sh -o /tmp/uninstall-full.sh && bash /tmp/uninstall-full.sh
 ```
 
 Windows (as Administrator):
 ```powershell
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-full.ps1' -OutFile "$env:TEMP\uninstall-full.ps1"; & "$env:TEMP\uninstall-full.ps1"
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/uninstall-full.ps1' -OutFile "$env:TEMP\uninstall-full.ps1"; & "$env:TEMP\uninstall-full.ps1"
 ```
 
 ### Interactive Menu
@@ -279,12 +279,12 @@ For guided experience:
 
 Mac/Linux:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall.sh -o /tmp/uninstall.sh && bash /tmp/uninstall.sh
+curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/uninstall.sh -o /tmp/uninstall.sh && bash /tmp/uninstall.sh
 ```
 
 Windows:
 ```powershell
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall.ps1' -OutFile "$env:TEMP\uninstall.ps1"; & "$env:TEMP\uninstall.ps1"
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/uninstall.ps1' -OutFile "$env:TEMP\uninstall.ps1"; & "$env:TEMP\uninstall.ps1"
 ```
 
 ## Response Style

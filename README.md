@@ -43,20 +43,20 @@ Run the command for your platform. The script installs everything automatically.
 > **Do NOT use `sudo`.** The script will prompt for your password only when needed (like installing Homebrew). Running the entire script with sudo causes permission issues.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/setup-mac.sh -o /tmp/setup.sh && bash /tmp/setup.sh
+curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/setup-mac.sh -o /tmp/setup.sh && bash /tmp/setup.sh
 ```
 
 ### Windows (PowerShell as Admin)
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/setup-windows.ps1' -OutFile "$env:TEMP\setup-windows.ps1"
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/setup-windows.ps1' -OutFile "$env:TEMP\setup-windows.ps1"
 & "$env:TEMP\setup-windows.ps1"
 ```
 
 ### Linux / WSL2
 ```bash
-curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/setup-linux.sh -o /tmp/setup.sh && bash /tmp/setup.sh
+curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/setup-linux.sh -o /tmp/setup.sh && bash /tmp/setup.sh
 ```
 
 **What it does:**
@@ -135,12 +135,12 @@ Removes Rising Tides content but keeps Claude Code and all prerequisites.
 
 **Mac/Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-skills.sh | bash
+curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/uninstall-skills.sh | bash
 ```
 
 **Windows:**
 ```powershell
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-skills.ps1' -OutFile "$env:TEMP\uninstall.ps1"; & "$env:TEMP\uninstall.ps1"
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/uninstall-skills.ps1' -OutFile "$env:TEMP\uninstall.ps1"; & "$env:TEMP\uninstall.ps1"
 ```
 
 ### Full Uninstall (Remove Everything)
@@ -149,12 +149,12 @@ Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising
 
 **Mac/Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-full.sh | bash
+curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/uninstall-full.sh | bash
 ```
 
 **Windows (as Administrator):**
 ```powershell
-Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-full.ps1' -OutFile "$env:TEMP\uninstall.ps1"; & "$env:TEMP\uninstall.ps1"
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/uninstall-full.ps1' -OutFile "$env:TEMP\uninstall.ps1"; & "$env:TEMP\uninstall.ps1"
 ```
 
 ---
@@ -164,7 +164,7 @@ Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising
 <div align="center">
 
 [![Community](https://img.shields.io/badge/Community-Skool-blue?style=for-the-badge)](https://www.skool.com/rising-tides-9034)
-[![Issues](https://img.shields.io/badge/Issues-GitHub-black?style=for-the-badge&logo=github)](https://github.com/SunsetSystemsAI/rising-tides-starter/issues)
+[![Issues](https://img.shields.io/badge/Issues-GitHub-black?style=for-the-badge&logo=github)](https://github.com/SunsetSystemsAI/rising-tides-starter-pack/issues)
 
 **Questions?** Join the community or open an issue.
 

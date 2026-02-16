@@ -43,7 +43,7 @@ if [ ! -d "$SKILLS_DIR" ]; then
     print_error "Rising Tides is not installed."
     echo ""
     echo -e "${YELLOW}Run the setup script first:${NC}"
-    echo "  curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/setup-mac.sh | bash"
+    echo "  curl -fsSL https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/setup-mac.sh | bash"
     echo ""
     exit 1
 fi
@@ -62,14 +62,14 @@ TEMP_DIR=$(mktemp -d)
 DOWNLOAD_SUCCESS=false
 
 # Try zip download
-ZIP_URL="https://github.com/SunsetSystemsAI/rising-tides-starter/archive/refs/heads/main.zip"
+ZIP_URL="https://github.com/SunsetSystemsAI/rising-tides-starter-pack/archive/refs/heads/main.zip"
 ZIP_FILE="$TEMP_DIR/update.zip"
 
 if curl -fsSL "$ZIP_URL" -o "$ZIP_FILE" 2>/dev/null; then
     unzip -qo "$ZIP_FILE" -d "$TEMP_DIR" 2>/dev/null
-    if [ -d "$TEMP_DIR/rising-tides-starter-main" ]; then
-        mv "$TEMP_DIR/rising-tides-starter-main/"* "$TEMP_DIR/" 2>/dev/null || true
-        rm -rf "$TEMP_DIR/rising-tides-starter-main"
+    if [ -d "$TEMP_DIR/rising-tides-starter-pack-main" ]; then
+        mv "$TEMP_DIR/rising-tides-starter-pack-main/"* "$TEMP_DIR/" 2>/dev/null || true
+        rm -rf "$TEMP_DIR/rising-tides-starter-pack-main"
     fi
     rm -f "$ZIP_FILE"
     DOWNLOAD_SUCCESS=true

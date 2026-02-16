@@ -62,7 +62,7 @@ Or clone from GitHub:
 
 ```bash
 # Clone to a temp location
-git clone --depth 1 https://github.com/SunsetSystemsAI/rising-tides-starter.git /tmp/rising-tides
+git clone --depth 1 https://github.com/SunsetSystemsAI/rising-tides-starter-pack.git /tmp/rising-tides
 
 # Copy to ~/.claude/
 cp -r /tmp/rising-tides/skills/* ~/.claude/skills/
@@ -280,7 +280,7 @@ vercel login
 
 ```bash
 # Download latest
-git clone --depth 1 https://github.com/SunsetSystemsAI/rising-tides-starter.git /tmp/rising-tides
+git clone --depth 1 https://github.com/SunsetSystemsAI/rising-tides-starter-pack.git /tmp/rising-tides
 
 # Copy updated files
 cp -r /tmp/rising-tides/skills/* ~/.claude/skills/
@@ -398,7 +398,7 @@ claude
 ## Support
 
 - **Community:** [Rising Tides on Skool](https://www.skool.com/rising-tides-9034)
-- **Skills Pack Issues:** [GitHub Issues](https://github.com/SunsetSystemsAI/rising-tides-starter/issues)
+- **Skills Pack Issues:** [GitHub Issues](https://github.com/SunsetSystemsAI/rising-tides-starter-pack/issues)
 
 ---
 

@@ -36,7 +36,7 @@ if (-not (Test-Path $SKILLS_DIR)) {
     Print-Error "Rising Tides is not installed."
     Write-Host ""
     Write-Host "Run the setup script first:" -ForegroundColor Yellow
-    Write-Host "  Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/setup-windows.ps1' -OutFile `"`$env:TEMP\setup.ps1`"; & `"`$env:TEMP\setup.ps1`""
+    Write-Host "  Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/setup-windows.ps1' -OutFile `"`$env:TEMP\setup.ps1`"; & `"`$env:TEMP\setup.ps1`""
     Write-Host ""
     exit 1
 }
@@ -57,12 +57,12 @@ $downloadSuccess = $false
 # Try zip download
 try {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    $zipUrl = "https://github.com/SunsetSystemsAI/rising-tides-starter/archive/refs/heads/main.zip"
+    $zipUrl = "https://github.com/SunsetSystemsAI/rising-tides-starter-pack/archive/refs/heads/main.zip"
     $zipFile = Join-Path $env:TEMP "rising-tides-update.zip"
 
     Invoke-WebRequest -Uri $zipUrl -OutFile $zipFile -UseBasicParsing
     Expand-Archive -Path $zipFile -DestinationPath $env:TEMP -Force
-    $tempDir = Join-Path $env:TEMP "rising-tides-starter-main"
+    $tempDir = Join-Path $env:TEMP "rising-tides-starter-pack-main"
     Remove-Item $zipFile -Force -ErrorAction SilentlyContinue
 
     if (Test-Path $tempDir) {

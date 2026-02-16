@@ -8,7 +8,7 @@
 $CLAUDE_DIR = "$env:USERPROFILE\.claude"
 $SKILLS_DIR = "$CLAUDE_DIR\skills"
 $PLUGINS_DIR = "$CLAUDE_DIR\plugins"
-$SKILLS_REPO = "https://github.com/SunsetSystemsAI/rising-tides-starter.git"
+$SKILLS_REPO = "https://github.com/SunsetSystemsAI/rising-tides-starter-pack.git"
 
 Write-Host ""
 Write-Host "============================================" -ForegroundColor Cyan

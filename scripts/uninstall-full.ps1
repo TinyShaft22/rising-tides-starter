@@ -239,7 +239,7 @@ Write-Host ""
 Write-Host "  Open PowerShell as Administrator and run:"
 Write-Host ""
 Write-Host "  Set-ExecutionPolicy Bypass -Scope Process -Force" -ForegroundColor Cyan
-Write-Host "  Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/setup-windows.ps1' -OutFile `"`$env:TEMP\setup-windows.ps1`"" -ForegroundColor Cyan
+Write-Host "  Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/setup-windows.ps1' -OutFile `"`$env:TEMP\setup-windows.ps1`"" -ForegroundColor Cyan
 Write-Host "  & `"`$env:TEMP\setup-windows.ps1`"" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Questions? Visit: https://www.skool.com/rising-tides-9034"

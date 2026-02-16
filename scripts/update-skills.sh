@@ -16,7 +16,7 @@ NC='\033[0m'
 CLAUDE_DIR="$HOME/.claude"
 SKILLS_DIR="$CLAUDE_DIR/skills"
 PLUGINS_DIR="$CLAUDE_DIR/plugins"
-SKILLS_REPO="https://github.com/SunsetSystemsAI/rising-tides-starter.git"
+SKILLS_REPO="https://github.com/SunsetSystemsAI/rising-tides-starter-pack.git"
 
 echo ""
 echo -e "${BLUE}============================================${NC}"

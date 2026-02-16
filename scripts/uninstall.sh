@@ -53,7 +53,7 @@ case $choice in
             echo "Expected location: $SCRIPT_DIR/uninstall-skills.sh"
             echo ""
             echo "You can download it from:"
-            echo "  https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-skills.sh"
+            echo "  https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/uninstall-skills.sh"
         fi
         ;;
     2)
@@ -68,7 +68,7 @@ case $choice in
             echo "Expected location: $SCRIPT_DIR/uninstall-full.sh"
             echo ""
             echo "You can download it from:"
-            echo "  https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-full.sh"
+            echo "  https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/uninstall-full.sh"
         fi
         ;;
     3|*)

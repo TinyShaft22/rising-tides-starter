@@ -458,7 +458,7 @@ powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\.local\bin\update-rising
     Print-Info "Downloading Rising Tides Skills Pack from GitHub..."
 
     $tempDir = Join-Path $env:TEMP "rising-tides-temp"
-    $SKILLS_REPO = "https://github.com/SunsetSystemsAI/rising-tides-starter.git"
+    $SKILLS_REPO = "https://github.com/SunsetSystemsAI/rising-tides-starter-pack.git"
 
     Refresh-Path
 
@@ -485,12 +485,12 @@ powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\.local\bin\update-rising
     if (-not $downloadSuccess) {
         try {
             Print-Info "Trying zip download..."
-            $zipUrl = "https://github.com/SunsetSystemsAI/rising-tides-starter/archive/refs/heads/main.zip"
-            $zipFile = Join-Path $env:TEMP "rising-tides-starter.zip"
+            $zipUrl = "https://github.com/SunsetSystemsAI/rising-tides-starter-pack/archive/refs/heads/main.zip"
+            $zipFile = Join-Path $env:TEMP "rising-tides-starter-pack.zip"
             [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
             Invoke-WebRequest -Uri $zipUrl -OutFile $zipFile -UseBasicParsing
             Expand-Archive -Path $zipFile -DestinationPath $env:TEMP -Force
-            $tempDir = Join-Path $env:TEMP "rising-tides-starter-main"
+            $tempDir = Join-Path $env:TEMP "rising-tides-starter-pack-main"
             Remove-Item $zipFile -Force -ErrorAction SilentlyContinue
             if (Test-Path $tempDir) {
                 $downloadSuccess = $true

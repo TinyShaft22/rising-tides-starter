@@ -43,7 +43,7 @@ switch ($choice) {
             Write-Host "Expected location: $skillsScript"
             Write-Host ""
             Write-Host "You can download it from:"
-            Write-Host "  https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-skills.ps1"
+            Write-Host "  https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/uninstall-skills.ps1"
         }
     }
     "2" {
@@ -58,7 +58,7 @@ switch ($choice) {
             Write-Host "Expected location: $fullScript"
             Write-Host ""
             Write-Host "You can download it from:"
-            Write-Host "  https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter/main/scripts/uninstall-full.ps1"
+            Write-Host "  https://raw.githubusercontent.com/SunsetSystemsAI/rising-tides-starter-pack/main/scripts/uninstall-full.ps1"
         }
     }
     default {
